@@ -42,7 +42,7 @@ export function Sidebar() {
     },
   ];
   return (
-    <section className=" flex flex-col items-center bg-white rounded-3xl min-h-[95vh] ">
+    <section className=" flex flex-col items-center bg-white rounded-3xl w-full h-[95vh] sc overflow-y-auto ">
       <img className=" m-4" src={LogoIcon} alt="Logo" />
       <img src={Line} alt="" />
       <Link to={"/panel/dashboard"} className=" my-8 font-bold text-[#0D294E]">

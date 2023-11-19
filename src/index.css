@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: YekanBakh;
+  src: url("/src//assets/font/YekanBakh-Regular.ttf");
+}
+
 body {
-    background-color: #FFF9F2;
+  background-color: #fff9f2;
+  font-family: 'YekanBakh' , sans-serif;
+}
+
+/* width */
+.sc::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+.sc::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+.sc::-webkit-scrollbar-thumb {
+  background: #e5e5e5;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+.sc::-webkit-scrollbar-thumb:hover {
+  background: #e5e5e5;
 }

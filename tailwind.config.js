@@ -35,6 +35,7 @@ export default {
         6: "#595959",
         7: "#3B3B3B",
       },
+      backColor : "#0D294E",
 
       // default
       transparent: 'transparent',
