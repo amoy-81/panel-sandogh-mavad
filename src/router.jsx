@@ -5,6 +5,7 @@ import AuthLayout from "./layout/AuthLayout";
 import Login from "./pages/register/Login";
 import Register from "./pages/register/Register";
 import PrivateRoutes from "./auth/PrivateRoutes";
+import ViewTikets from "./pages/user/tiket/ViewTikets";
 
 const router = createBrowserRouter([
   // user routes
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "view-tikets",
+        element: <ViewTikets />,
       },
     ],
   },

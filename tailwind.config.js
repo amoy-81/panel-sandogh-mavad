@@ -8,6 +8,7 @@ export default {
       primary: "#F99D27",
       secondary: "#1C75BC",
       gray: "#8B8B8B",
+      titlesColor : "#1D1929",
       p: {
         1: "#FFF9F2",
         2: "#FFEBD0",
