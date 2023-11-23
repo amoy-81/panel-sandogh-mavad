@@ -44,8 +44,8 @@ function useRequests({ url, header }) {
         ) {
           //   token expare
           setError("توکن منقضی شده است");
-          toast.error("زمان شما به پایان رسید");
-          toast.error("درحال انتقال به صفحه ورود...");
+          toast.error("زمان شما به پایان رسید" , {autoClose : 2000});
+          toast.error("درحال انتقال به صفحه ورود...", {autoClose : 2000});
 
           //   redirect to login after 2s
           setTimeout(() => {
@@ -57,7 +57,48 @@ function useRequests({ url, header }) {
       });
   };
 
-  return { response, error, loading, getRequest };
+  const postRequest = (data) => {
+    setLoading(true);
+    httpService
+      .post(url, data, {
+        headers: {
+          authorization: `bearer ${
+            authState && authState.token
+              ? authState.token
+              : isJson(token)
+              ? JSON.parse(token)
+              : token
+          }`,
+          ...header,
+        },
+      })
+      .then((res) => {
+        setLoading(false);
+        setResponse(res.data);
+      })
+      .catch((err) => {
+        setLoading(false);
+        if (
+          err.response &&
+          (err.response.status === 403 || err.response.status === 401)
+        ) {
+          //   token expare
+          setError("توکن منقضی شده است");
+          toast.error("زمان شما به پایان رسید", {autoClose : 2000});
+          toast.error("درحال انتقال به صفحه ورود...", {autoClose : 2000});
+
+          //   redirect to login after 2s
+          setTimeout(() => {
+            navigate("/auth/login");
+          }, 2000);
+        } else {
+          toast.error(err.response.data.message || "خطا در انجام درخواست", {autoClose : 2000});
+          setError(err.response.data.message || "خطا در ارتباط");
+        }
+      });
+  };
+
+  return { response, error, loading, getRequest, postRequest };
 }
 
 export default useRequests;

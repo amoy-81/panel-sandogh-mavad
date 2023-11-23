@@ -38,7 +38,7 @@ export function Sidebar({ userRule }) {
     {
       title: "پشتیبانی",
       drop: ["مشاهده تیکت ها", "ثبت تیکت", "اعلانات"],
-      links: ["/user/view-tikets", "/user/new-tiket", "/user/notifications"],
+      links: ["/user/view-tickets", "/user/new-tiket", "/user/notifications"],
       icon: SupportIcon,
     },
     {
