@@ -7,7 +7,7 @@ function PanelLayout() {
   return (
     <div className=" flex p-2">
       <div className=" p-2 w-1/5 h-[95vh]">
-        <Sidebar />
+        <Sidebar userRule={"user"} />
       </div>
       <div className=" p-2 w-4/5 ">
         <Topbar />

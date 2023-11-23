@@ -4,10 +4,28 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import AuthLayout from "./layout/AuthLayout";
 import Login from "./pages/register/Login";
 import Register from "./pages/register/Register";
+import PrivateRoutes from "./auth/PrivateRoutes";
 
 const router = createBrowserRouter([
+  // user routes
   {
-    path: "/panel",
+    path: "/user",
+    element: (
+      <PrivateRoutes>
+        <PanelLayout />
+      </PrivateRoutes>
+    ),
+    children: [
+      {
+        path: "dashboard",
+        element: <Dashboard />,
+      },
+    ],
+  },
+
+  // expert routes
+  {
+    path: "/expert",
     element: <PanelLayout />,
     children: [
       {
@@ -17,6 +35,19 @@ const router = createBrowserRouter([
     ],
   },
 
+  // admin routes
+  {
+    path: "/admin",
+    element: <PanelLayout />,
+    children: [
+      {
+        path: "dashboard",
+        element: <Dashboard />,
+      },
+    ],
+  },
+
+  // auth routes
   {
     path: "/auth",
     element: <AuthLayout />,
