@@ -7,6 +7,8 @@ import Register from "./pages/register/Register";
 import PrivateRoutes from "./auth/PrivateRoutes";
 import ViewTikets from "./pages/user/tiket/ViewTikets";
 import NewTicket from "./pages/user/new-ticket/NewTicket";
+import Notifications from "./pages/user/notifications/Notifications";
+import SiteGuide from "./pages/user/site-guide/SiteGuide";
 
 const router = createBrowserRouter([
   // user routes
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
       {
         path: "new-tiket",
         element: <NewTicket />,
+      },
+      {
+        path: "notifications",
+        element: <Notifications />,
+      },
+      {
+        path: "guide",
+        element: <SiteGuide />,
       },
     ],
   },

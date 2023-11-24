@@ -90,14 +90,14 @@ function NewTicket() {
         <button
           onClick={() => setShowCurrentRequests(true)}
           type="button"
-          class="inline-flex items-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          className="inline-flex items-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           {selectedReq ? "تغییر درخواست" : "انتخاب درخواست"}
         </button>
         {selectedReq && (
           <button
             type="button"
-            class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-gray-300 hover:bg-gray-50"
+            className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-gray-300 hover:bg-gray-50"
           >
             شناسه درخواست : {selectedReq.shenaseh}
           </button>

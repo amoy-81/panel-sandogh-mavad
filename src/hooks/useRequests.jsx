@@ -44,8 +44,9 @@ function useRequests({ url, header }) {
         ) {
           //   token expare
           setError("توکن منقضی شده است");
-          toast.error("زمان شما به پایان رسید" , {autoClose : 2000});
-          toast.error("درحال انتقال به صفحه ورود...", {autoClose : 2000});
+          toast.error("زمان شما به پایان رسید , درحال انتقال به صفحه ورود...", {
+            autoClose: 2000,
+          });
 
           //   redirect to login after 2s
           setTimeout(() => {
@@ -84,15 +85,18 @@ function useRequests({ url, header }) {
         ) {
           //   token expare
           setError("توکن منقضی شده است");
-          toast.error("زمان شما به پایان رسید", {autoClose : 2000});
-          toast.error("درحال انتقال به صفحه ورود...", {autoClose : 2000});
+          toast.error("زمان شما به پایان رسید , درحال انتقال به صفحه ورود...", {
+            autoClose: 2000,
+          });
 
           //   redirect to login after 2s
           setTimeout(() => {
             navigate("/auth/login");
           }, 2000);
         } else {
-          toast.error(err.response.data.message || "خطا در انجام درخواست", {autoClose : 2000});
+          toast.error(err.response.data.message || "خطا در انجام درخواست", {
+            autoClose: 2000,
+          });
           setError(err.response.data.message || "خطا در ارتباط");
         }
       });

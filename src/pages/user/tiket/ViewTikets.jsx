@@ -3,7 +3,6 @@ import useRequests from "../../../hooks/useRequests";
 import Loader from "../../../components/loader/Loader";
 import { dateConversion } from "../../../helper/dateConversion";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 
 function ViewTikets() {
@@ -21,10 +20,6 @@ function ViewTikets() {
   useEffect(() => {
     getTikets();
   }, []);
-
-  useEffect(() => {
-    if (tiketsErr) toast.error(tiketsErr);
-  }, [tiketsErr]);
 
   return (
     <div className=" relative">
