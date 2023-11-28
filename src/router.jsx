@@ -9,6 +9,7 @@ import ViewTikets from "./pages/user/tiket/ViewTikets";
 import NewTicket from "./pages/user/new-ticket/NewTicket";
 import Notifications from "./pages/user/notifications/Notifications";
 import SiteGuide from "./pages/user/site-guide/SiteGuide";
+import CurrentRequests from "./pages/user/current-requests/CurrentRequests";
 
 const router = createBrowserRouter([
   // user routes
@@ -24,6 +25,14 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: <Dashboard />,
       },
+
+      // requests
+      {
+        path: "current-requests",
+        element: <CurrentRequests />,
+      },
+
+      // support
       {
         path: "view-tickets",
         element: <ViewTikets />,
