@@ -15,8 +15,8 @@ import UserIcon from "@assets/svg/sidebar/userIcon.svg";
 export function Sidebar({ userRule }) {
   const userSidebar = [
     {
-      title: "خدمات",
-      links: ["/panel/experts"],
+      title: "خانه",
+      links: ["/user/dashboard"],
       icon: ExpertsIcon,
     },
     {
