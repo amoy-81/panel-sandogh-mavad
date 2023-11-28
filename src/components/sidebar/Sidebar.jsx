@@ -28,7 +28,7 @@ export function Sidebar({ userRule }) {
         "درخواست های جاری",
       ],
       links: [
-        "/user/warranty",
+        "/user/warranty-docs-upload",
         "/user/credit-limit",
         "/user/facilities",
         "/user/current-requests",

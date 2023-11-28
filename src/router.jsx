@@ -10,6 +10,9 @@ import NewTicket from "./pages/user/new-ticket/NewTicket";
 import Notifications from "./pages/user/notifications/Notifications";
 import SiteGuide from "./pages/user/site-guide/SiteGuide";
 import CurrentRequests from "./pages/user/current-requests/CurrentRequests";
+import UpdateProfile from "./pages/user/update-profile/UpdateProfile";
+import WarrantyDocsUpload from "./pages/user/requests/warranty/WarrantyDocsUpload";
+import WarrantyComplet from "./pages/user/requests/warranty/WarrantyComplet";
 
 const router = createBrowserRouter([
   // user routes
@@ -31,6 +34,14 @@ const router = createBrowserRouter([
         path: "current-requests",
         element: <CurrentRequests />,
       },
+      {
+        path: "warranty-docs-upload",
+        element: <WarrantyDocsUpload />,
+      },
+      {
+        path: "warranty-complet",
+        element: <WarrantyComplet />,
+      },
 
       // support
       {
@@ -48,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "guide",
         element: <SiteGuide />,
+      },
+      {
+        path: "profile",
+        element: <UpdateProfile />,
       },
     ],
   },

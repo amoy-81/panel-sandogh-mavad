@@ -1,4 +1,3 @@
-import React from "react";
 import Ellipse1 from "../../../assets/svg/dashboard/Ellipse-1.svg";
 import Ellipse2 from "../../../assets/svg/dashboard/Ellipse-2.svg";
 import Ellipse3 from "../../../assets/svg/dashboard/Ellipse-3.svg";
