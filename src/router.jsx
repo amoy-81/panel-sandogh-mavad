@@ -13,6 +13,8 @@ import CurrentRequests from "./pages/user/current-requests/CurrentRequests";
 import UpdateProfile from "./pages/user/update-profile/UpdateProfile";
 import WarrantyDocsUpload from "./pages/user/requests/warranty/WarrantyDocsUpload";
 import WarrantyComplet from "./pages/user/requests/warranty/WarrantyComplet";
+import CreditLimit from "./pages/user/requests/credit-limit/CreditLimit";
+import Facilities from "./pages/user/requests/facilities/Facilities";
 
 const router = createBrowserRouter([
   // user routes
@@ -41,6 +43,14 @@ const router = createBrowserRouter([
       {
         path: "warranty-complet",
         element: <WarrantyComplet />,
+      },
+      {
+        path: "credit-limit",
+        element: <CreditLimit />,
+      },
+      {
+        path: "facilities",
+        element: <Facilities />,
       },
 
       // support
