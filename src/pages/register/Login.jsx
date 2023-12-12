@@ -62,7 +62,7 @@ function Login() {
 
   return (
     <>
-      <div className=" relative flex flex-col items-center">
+      <div className=" relative flex flex-col items-center max-w-lg">
         {/* Loader */}
         {isLoading && <Loader />}
         <img className=" w-28 h-28" src={LogoIcon} alt="Logo" />
@@ -125,7 +125,7 @@ function Login() {
                 : " text-white py-4 bg-secondary hover:bg-secondary rounded-lg w-full"
             }
           >
-            ورود
+            {isLoading ? "درحال ارسال..." : "ورود"}
           </button>
         </form>
         <p className=" text-g-6 font-semibold mt-6 flex gap-2">

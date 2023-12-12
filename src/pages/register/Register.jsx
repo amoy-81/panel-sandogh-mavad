@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import LogoIcon from "@assets/svg/logo1.svg";
 import LoginFormInput from "../../components/Input/LoginFormInput";
@@ -14,6 +13,7 @@ function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [is_confirmed, setIs_confirmed] = useState(false);
   const [reqError, setReqError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,47 +22,57 @@ function Register() {
     register,
     formState: { errors },
     handleSubmit,
+    watch,
   } = useForm();
 
   const formOnSubmit = async (data) => {
     setReqError(null);
-    setIsLoading(true);
     const reqPayload = {
-      username: data.username,
-      password: data.password,
+      name: data.name,
+      family: data.family,
+
+      phone : data.phone
     };
-    httpService
-      .post("/v1/login", reqPayload, {
-        headers: { "Content-Type": "application/json" },
-      })
-      .then((response) => {
-        localStorage.setItem(
-          "token",
-          JSON.stringify(response.data.authorisation.token)
-        );
-        dispatch(userLoginSuccess(response.data.user));
-        setIsLoading(false);
-        navigate(
-          `/${response.data.user.type === "genuine" ||
-            response.data.user.type === "legal"
-            ? "user"
-            : response.data.user.type === "expert"
-              ? "expert"
-              : response.data.user.type === "admin"
-                ? "admin"
-                : ""
-          }/dashboard`
-        );
-      })
-      .catch((error) => {
-        setReqError(error.response.data.message || "خطا در برقراری ارتباط");
-        setIsLoading(false);
-      });
+
+    if (is_confirmed) {
+      setIsLoading(true);
+      console.log(data)
+      // httpService
+      //   .post("/v1/login", reqPayload, {
+      //     headers: { "Content-Type": "application/json" },
+      //   })
+      //   .then((response) => {
+      //     localStorage.setItem(
+      //       "token",
+      //       JSON.stringify(response.data.authorisation.token)
+      //     );
+      //     dispatch(userLoginSuccess(response.data.user));
+      //     setIsLoading(false);
+      //     navigate(
+      //       `/${
+      //         response.data.user.type === "genuine" ||
+      //         response.data.user.type === "legal"
+      //           ? "user"
+      //           : response.data.user.type === "expert"
+      //           ? "expert"
+      //           : response.data.user.type === "admin"
+      //           ? "admin"
+      //           : ""
+      //       }/dashboard`
+      //     );
+      //   })
+      //   .catch((error) => {
+      //     setReqError(error.response.data.message || "خطا در برقراری ارتباط");
+      //     setIsLoading(false);
+      //   });
+    } else {
+      setReqError("با قوانین و مقررات سامانه موافقت کنید");
+    }
   };
 
   return (
     <>
-      <div className=" relative flex flex-col items-center">
+      <div className=" relative flex flex-col items-center max-w-lg">
         {/* Loader */}
         {isLoading && <Loader />}
         <img className=" w-28 h-28" src={LogoIcon} alt="Logo" />
@@ -71,7 +81,9 @@ function Register() {
         {reqError ? (
           <p className=" text-red-500 my-6 text-center">{reqError}</p>
         ) : (
-          <h1 className=" font-bold my-6 text-center text-backColor">ثبت نام</h1>
+          <h1 className=" font-bold my-6 text-center text-backColor">
+            ثبت نام
+          </h1>
         )}
 
         {/* login form */}
@@ -79,99 +91,96 @@ function Register() {
           onSubmit={handleSubmit(formOnSubmit)}
           className=" flex flex-col gap-4"
         >
-          {/* firstname */}
-          <div className="flex ">
-            <LoginFormInput
-              type={"text"}
-              register={register}
-              validation={{
-                required: "این فیلد الزامیست",
-              }}
-              error={errors.username}
-              name={"firstname"}
-              label={"نام "}
-            // placeholder={"نام کاربری"}
-            />
-            {/* lastname */}
-            <LoginFormInput
-              type={"text"}
-              register={register}
-              validation={{
-                required: "این فیلد الزامیست",
-              }}
-              error={errors.username}
-              name={"lastname"}
-              label={" نام خانوادگی"}
-            // placeholder={"نام کاربری"}
-            />
+          <div className=" w-full flex max-sm:flex-col gap-4">
+            <div className=" w-1/2 max-sm:w-full flex flex-col gap-2">
+              {/* firstname */}
+              <LoginFormInput
+                type={"text"}
+                register={register}
+                validation={{
+                  required: "این فیلد الزامیست",
+                }}
+                error={errors.name}
+                name={"name"}
+                label={"نام "}
+              />
+              <LoginFormInput
+                type={"text"}
+                register={register}
+                validation={{
+                  required: "این فیلد الزامیست",
+                }}
+                error={errors.national_code}
+                name={"national_code"}
+                label={"کدملی "}
+              />
+              {/* Repeat password */}
+              <LoginFormInput
+                type={"password"}
+                register={register}
+                validation={{
+                  required: "این فیلد الزامیست",
+                  minLength: 6,
+                }}
+                error={errors.password}
+                name={"password"}
+                label={"گذرواژه"}
+                placeholder={"******"}
+              />
+            </div>
+            <div className=" w-1/2 max-sm:w-full flex flex-col gap-2">
+              {/* lastname */}
+              <LoginFormInput
+                type={"text"}
+                register={register}
+                validation={{
+                  required: "این فیلد الزامیست",
+                }}
+                error={errors.family}
+                name={"family"}
+                label={" نام خانوادگی"}
+              />
+              {/* phone */}
+              <LoginFormInput
+                type={"text"}
+                register={register}
+                validation={{
+                  required: "این فیلد الزامیست",
+                }}
+                error={errors.phone}
+                name={"phone"}
+                label={" شماره تماس "}
+              />
+              <LoginFormInput
+                type={"password"}
+                register={register}
+                validation={{
+                  required: "این فیلد الزامیست",
+                  validate: (value) => {
+                    if (value !== watch("password")) {
+                      return "مطابقت ندارد";
+                    }
+                  },
+                }}
+                error={errors.password_confirmation}
+                name={"password_confirmation"}
+                label={"تکرار گذرواژه"}
+                placeholder={"******"}
+              />
+            </div>
           </div>
-
-          {/* nationalcode */}
-          <div className="flex">
-            <LoginFormInput
-              type={"text"}
-              register={register}
-              validation={{
-                required: "این فیلد الزامیست",
-              }}
-              error={errors.username}
-              name={"nationalcode"}
-              label={"کدملی "}
-            // placeholder={"نام کاربری"}
-            />
-            {/* phone */}
-            <LoginFormInput
-              type={"text"}
-              register={register}
-              validation={{
-                required: "این فیلد الزامیست",
-              }}
-              error={errors.username}
-              name={"phone"}
-              label={" شماره تماس "}
-            // placeholder={"نام کاربری"}
-            />
-          </div>
-
-          <div className="flex">
-            {/* Repeat password */}
-            <LoginFormInput
-              type={"password"}
-              register={register}
-              validation={{
-                required: "این فیلد الزامیست",
-                minLength: 6,
-              }}
-              error={errors.password}
-              name={"password"}
-              label={"گذرواژه (حداقل 8 کاراکتر)"}
-              placeholder={"******"}
-            />
-            <LoginFormInput
-              type={"Repeatpassword"}
-              register={register}
-              validation={{
-                required: "این فیلد الزامیست",
-                minLength: 6,
-              }}
-              error={errors.password}
-              name={"password"}
-              label={" تکرار گذرواژه (حداقل 8 کاراکتر) "}
-              placeholder={"******"}
-            />
-          </div>
-
-
           <div className=" flex justify-between items-center">
             <div className=" flex items-center gap-2 text-g-6">
               <input
                 type="checkbox"
-                id="remember"
+                id="is_confirmed"
+                onChange={(e) => setIs_confirmed(e.target.checked)}
                 className="appearance-none w-5 h-5 border-2 border-s-400 rounded bg-[#E8F0F84D] mt-1 checked:bg-s-4 checked:border-none "
               />
-              <label htmlFor="remember">با قوانین و مقررات سامانه موافقم.</label>
+              <label className={reqError === "با قوانین و مقررات سامانه موافقت کنید" ? "text-red-500" : "text-g-6"} htmlFor="is_confirmed">
+                با قوانین و مقررات سامانه موافقم.
+              </label>
             </div>
-
           </div>
           <button
             disabled={isLoading}
@@ -181,7 +190,7 @@ function Register() {
                 : " text-white py-4 bg-secondary hover:bg-secondary rounded-lg w-full"
             }
           >
-            ورود
+            {isLoading ? "درحال ارسال..." : "ثبت نام"}
           </button>
         </form>
         <p className=" text-g-6 font-semibold mt-6 flex gap-2">
@@ -194,25 +203,5 @@ function Register() {
     </>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export default Register;
