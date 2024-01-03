@@ -5,4 +5,10 @@ const userLoginSuccess = (data) => {
   };
 };
 
-export { userLoginSuccess };
+const userLogout = () => {
+  return {
+    type: "USER_LOGOUT",
+  };
+};
+
+export { userLoginSuccess , userLogout };

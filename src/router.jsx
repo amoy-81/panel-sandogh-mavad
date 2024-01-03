@@ -15,6 +15,7 @@ import WarrantyDocsUpload from "./pages/user/requests/warranty/WarrantyDocsUploa
 import WarrantyComplet from "./pages/user/requests/warranty/WarrantyComplet";
 import CreditLimit from "./pages/user/requests/credit-limit/CreditLimit";
 import Facilities from "./pages/user/requests/facilities/Facilities";
+import PhoneVerify from "./pages/register/PhoneVerify";
 
 const router = createBrowserRouter([
   // user routes
@@ -113,6 +114,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "verify",
+        element: <PhoneVerify />,
       },
     ],
   },

@@ -8,6 +8,10 @@ const loginReducer = (state = initialState, action) => {
       return {
         userData: action.payload,
       };
+    case "USER_LOGOUT":
+      return {
+        userData: null,
+      };
 
     default:
       return state;

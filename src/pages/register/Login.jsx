@@ -55,14 +55,14 @@ function Login() {
         );
       })
       .catch((error) => {
-        setReqError(error.response.data.message || "خطا در برقراری ارتباط");
+        setReqError(error.response?.data.message || "خطا در برقراری ارتباط");
         setIsLoading(false);
       });
   };
 
   return (
     <>
-      <div className=" relative flex flex-col items-center max-w-lg">
+      <div className=" relative flex flex-col items-center max-w-2xl">
         {/* Loader */}
         {isLoading && <Loader />}
         <img className=" w-28 h-28" src={LogoIcon} alt="Logo" />

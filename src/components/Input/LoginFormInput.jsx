@@ -28,7 +28,7 @@ function LoginFormInput({
             {error?.message.length > 0
               ? `* ${error?.message}`
               : error?.type === "minLength"
-              ? `* رمزعبور کوتاه میباشد`
+              ? `* تعداد کاراکتر نامعتبر`
               : ""}
           </span>
         </label>
