@@ -11,8 +11,12 @@ import ShowUsersIcon from "@assets/svg/sidebar/showUsersIcon.svg";
 import RequestsIcon from "@assets/svg/sidebar/requestsIcon.svg";
 import SupportIcon from "@assets/svg/sidebar/supportIcon.svg";
 import UserIcon from "@assets/svg/sidebar/userIcon.svg";
+import useAuth from "../../auth/useAuth";
+import { useSelector } from "react-redux";
 
 export function Sidebar({ userRule }) {
+  const { userData } = useAuth();
+  const { isOpen } = useSelector((state) => state.menuState);
   const userSidebar = [
     {
       title: "خانه",
@@ -48,16 +52,30 @@ export function Sidebar({ userRule }) {
     },
     {
       title: "اطلاعات کاربری",
-      links: ["/user/update_genuine_profile"],
+      links: [
+        `/user/${
+          userData.type === "genuine"
+            ? "update_genuine_profile"
+            : "update_legal_profile"
+        }`,
+      ],
       icon: UserIcon,
     },
   ];
   return (
-    <section className=" flex flex-col items-center bg-white rounded-3xl w-full h-[95vh] sc overflow-y-auto ">
+    <section
+      className={` flex flex-col items-center bg-white rounded-3xl w-full h-[95vh] sc overflow-y-auto ${
+        isOpen ? ` max-lg:translate-x-0` : `max-lg:translate-x-[100%]`
+      } transition max-lg:fixed max-lg:h-screen max-lg:top-0 max-lg:right-0 max-lg:w-2/3 max-lg:z-50`}
+    >
       <img className=" m-4" src={LogoIcon} alt="Logo" />
       <img src={Line} alt="" />
       <Link
-        to={`/${userRule}/dashboard`}
+        to={`/${
+          userData.type === "genuine" || userData.type === "legal"
+            ? "user"
+            : userData.type
+        }/dashboard`}
         className=" my-8 font-bold text-[#0D294E]"
       >
         داشبورد

@@ -103,7 +103,7 @@ function LegalProfile() {
 
       <hr className="w-full border border-dashed border-g-2" />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="w-2/3 flex flex-wrap">
+        <div className="w-2/3 max-lg:w-full flex flex-wrap">
           {/* personalInformation */}
           {Object.keys(personalInformation).map((lableName, index) => (
             <ProfileInput
@@ -116,7 +116,7 @@ function LegalProfile() {
               label={inputTitle(lableName)}
             />
           ))}
-          <div className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-17 ">
+          <div className="relative mt-3 ml-2 w-80 max-lg:w-full border rounded-2xl p-2 overflow-hidden  h-17 ">
             <p className="font-bold text-xs">{inputTitle("establishment")}</p>
             <UIInputDate
               value={establishment}
@@ -128,7 +128,7 @@ function LegalProfile() {
         </div>
         <button
           type="submit"
-          className=" text-white py-4 px-6 mt-5 bg-secondary transition hover:bg-s-6 rounded-2xl"
+          className=" max-lg:w-full text-white py-4 px-6 mt-5 bg-secondary transition hover:bg-s-6 rounded-2xl"
         >
           ثبت اطلاعات
         </button>

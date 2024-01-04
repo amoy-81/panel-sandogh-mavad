@@ -9,7 +9,7 @@ function EnumResource({ values, setValues }) {
   return (
     <>
       {/* gender */}
-      <div className="w-2/3 flex flex-wrap my-7">
+      <div className="w-2/3 max-lg:w-full flex flex-wrap max-lg:flex-col my-7">
         <div className=" w-1/2 flex items-center gap-4">
           <p className=" font-bold">جنسیت :</p>
           <div className=" flex items-center gap-2">
@@ -48,7 +48,7 @@ function EnumResource({ values, setValues }) {
           </div>
         </div>
         {/* resident */}
-        <div className=" w-1/2 flex items-center gap-4">
+        <div className=" w-1/2 flex items-center gap-4 max-lg:mt-4">
           <p className=" font-bold">وضعیت تعهل :</p>
           <div className=" flex items-center gap-2">
             <input

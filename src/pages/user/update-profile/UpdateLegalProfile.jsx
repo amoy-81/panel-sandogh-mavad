@@ -116,9 +116,9 @@ function UpdateLegalProfile() {
 
   useEffect(() => {
     if (showUserError) {
-      toast.error("خطا در دریافت")
+      toast.error("خطا در دریافت");
     }
-  } , [showUserError])
+  }, [showUserError]);
 
   //   form submit handler
   const onSubmit = (data) => {
@@ -154,7 +154,7 @@ function UpdateLegalProfile() {
       </div>
       <hr className="w-full border border-dashed border-g-2" />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="w-2/3 flex flex-wrap">
+        <div className="w-2/3 max-lg:w-full flex flex-wrap">
           {/* personalInformation */}
           {Object.keys(personalInformation).map((lableName, index) => (
             <ProfileInput
@@ -167,7 +167,7 @@ function UpdateLegalProfile() {
               label={inputTitle(lableName)}
             />
           ))}
-          <div className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-17 ">
+          <div className="relative mt-3 ml-2 w-80 max-md:w-full border rounded-2xl p-2 overflow-hidden  h-17 ">
             <p className="font-bold text-xs">{inputTitle("establishment")}</p>
             <UIInputDate
               value={establishment}
@@ -179,7 +179,7 @@ function UpdateLegalProfile() {
         </div>
         <button
           type="submit"
-          className=" text-white py-4 px-6 mt-5 bg-secondary transition hover:bg-s-6 rounded-2xl"
+          className=" max-lg:w-full text-white py-4 px-6 mt-5 bg-secondary transition hover:bg-s-6 rounded-2xl"
         >
           ثبت اطلاعات
         </button>

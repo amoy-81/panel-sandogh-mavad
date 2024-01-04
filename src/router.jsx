@@ -10,7 +10,6 @@ import NewTicket from "./pages/user/new-ticket/NewTicket";
 import Notifications from "./pages/user/notifications/Notifications";
 import SiteGuide from "./pages/user/site-guide/SiteGuide";
 import CurrentRequests from "./pages/user/current-requests/CurrentRequests";
-import UpdateProfile from "./pages/user/update-profile/UpdateProfile";
 import WarrantyDocsUpload from "./pages/user/requests/warranty/WarrantyDocsUpload";
 import WarrantyComplet from "./pages/user/requests/warranty/WarrantyComplet";
 import CreditLimit from "./pages/user/requests/credit-limit/CreditLimit";

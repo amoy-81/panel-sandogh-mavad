@@ -14,8 +14,8 @@ function ProfileInput({
     <div
       className={
         error
-          ? "relative mt-3 ml-2 w-80 border border-red-500 rounded-2xl p-2 overflow-hidden  h-17 "
-          : "relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-17 "
+          ? "relative mt-3 ml-2 w-80 max-md:w-full border border-red-500 rounded-2xl p-2 overflow-hidden  h-17 "
+          : "relative mt-3 ml-2 w-80 max-md:w-full border rounded-2xl p-2 overflow-hidden  h-17 "
       }
     >
       <p className="font-bold text-xs">
