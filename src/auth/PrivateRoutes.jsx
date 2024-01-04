@@ -1,10 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { userLoginSuccess } from "../redux/register/loginAction";
+import { httpService } from "../core/http-service";
+import { useEffect, useState } from "react";
+import Loader from "../components/loader/Loader";
+import { isJson } from "../helper/isJson";
 
 function PrivateRoutes({ children }) {
   // tools
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const pathType = pathname.split("/")[1];
@@ -15,6 +20,14 @@ function PrivateRoutes({ children }) {
   // states
   const authState = useSelector((state) => state.authState.userData);
 
+  const [isLoading, setIsLoading] = useState(false);
+  // not Login
+  useEffect(() => {
+    if (!authState && !isLogged) {
+      navigate("/auth/login", { state: pathname });
+    }
+  }, []);
+
   // user logged
   if (
     authState &&
@@ -24,24 +37,29 @@ function PrivateRoutes({ children }) {
       (authState?.type === "admin" && pathType === "admin"))
   ) {
     return children;
-  } else if (authState && authState?.type) {
-    return <Navigate to={`/${authState?.type}/dashboard`} />;
+  }
+
+  if (authState && authState?.type) {
+    navigate(`/${authState?.type}/dashboard`);
   }
 
   // only local storage
   if (!authState && isLogged) {
-    const fakeRes = {
-      name: "Local",
-      token: "aaaaaaaaaaa",
-      type: "genuine",
-      family: "Storage",
-    };
-    dispatch(userLoginSuccess(fakeRes));
-    return children;
+    httpService
+      .get("/v1/get_user_with_token", {
+        headers: {
+          authorization: `bearer ${isJson(token) ? JSON.parse(token) : token}`,
+        },
+      })
+      .then((response) => {
+        dispatch(userLoginSuccess(response.data));
+        return children;
+      })
+      .catch((err) => {
+        localStorage.removeItem("token");
+        navigate('/auth/login')
+      });
   }
-
-  // not Login
-  if (!authState && !isLogged) return <Navigate to={"/auth/login"} />;
 }
 
 export default PrivateRoutes;

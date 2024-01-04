@@ -16,6 +16,10 @@ import WarrantyComplet from "./pages/user/requests/warranty/WarrantyComplet";
 import CreditLimit from "./pages/user/requests/credit-limit/CreditLimit";
 import Facilities from "./pages/user/requests/facilities/Facilities";
 import PhoneVerify from "./pages/register/PhoneVerify";
+import GenuineProfile from "./pages/user/update-profile/GenuineProfile";
+import UpdateGenuineProfile from "./pages/user/update-profile/UpdateGenuineProfile";
+import LegalProfile from "./pages/user/update-profile/LegalProfile";
+import UpdateLegalProfile from "./pages/user/update-profile/UpdateLegalProfile";
 
 const router = createBrowserRouter([
   // user routes
@@ -71,9 +75,25 @@ const router = createBrowserRouter([
         path: "guide",
         element: <SiteGuide />,
       },
+
+      // genuine profile
       {
-        path: "profile",
-        element: <UpdateProfile />,
+        path: "update_genuine_profile",
+        element: <UpdateGenuineProfile />,
+      },
+      {
+        path: "record_genuine_profile",
+        element: <GenuineProfile />,
+      },
+
+      // legal profile
+      {
+        path: "update_legal_profile",
+        element: <UpdateLegalProfile />,
+      },
+      {
+        path: "record_genuine_legal",
+        element: <LegalProfile />,
       },
     ],
   },

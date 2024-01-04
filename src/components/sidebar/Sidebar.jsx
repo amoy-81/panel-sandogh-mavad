@@ -48,7 +48,7 @@ export function Sidebar({ userRule }) {
     },
     {
       title: "اطلاعات کاربری",
-      links: ["/user/profile"],
+      links: ["/user/update_genuine_profile"],
       icon: UserIcon,
     },
   ];

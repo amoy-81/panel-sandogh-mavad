@@ -94,10 +94,10 @@ function useRequests({ url, header }) {
             navigate("/auth/login");
           }, 2000);
         } else {
-          toast.error(err.response.data.message || "خطا در انجام درخواست", {
+          toast.error(err.response.data?.message || "خطا در انجام درخواست", {
             autoClose: 2000,
           });
-          setError(err.response.data.message || "خطا در ارتباط");
+          setError(err.response.data?.message || "خطا در ارتباط");
         }
       });
   };

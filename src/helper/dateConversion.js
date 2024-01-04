@@ -8,6 +8,7 @@ export const dateConversion = (event) => {
 
 export const onlyDateConversion = (event) => {
   const miladi = event.split("T")[0];
+  
   const date = moment(miladi, "YYYY-MM-DD");
   const shamsiDate = date.format("jYYYY/jM/jD");
   return shamsiDate;
