@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         element: <WarrantyDocsUpload />,
       },
       {
-        path: "warranty-complet",
+        path: "warranty-complet/:bondId",
         element: <WarrantyComplet />,
       },
       {

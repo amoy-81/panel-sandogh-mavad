@@ -14,6 +14,7 @@ function useRequests({ url, header }) {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
+  const [percentProgress, setPercentProgress] = useState(0);
 
   const token = localStorage.getItem("token");
 
@@ -60,6 +61,7 @@ function useRequests({ url, header }) {
 
   const postRequest = (data) => {
     setLoading(true);
+    setPercentProgress(0);
     httpService
       .post(url, data, {
         headers: {
@@ -71,6 +73,9 @@ function useRequests({ url, header }) {
               : token
           }`,
           ...header,
+        },
+        onUploadProgress: (pe) => {
+          setPercentProgress((pe.loaded / pe.total) * 100);
         },
       })
       .then((res) => {
@@ -102,7 +107,7 @@ function useRequests({ url, header }) {
       });
   };
 
-  return { response, error, loading, getRequest, postRequest };
+  return { response, error, loading, getRequest, postRequest , percentProgress };
 }
 
 export default useRequests;

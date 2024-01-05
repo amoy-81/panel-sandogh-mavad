@@ -1,31 +1,70 @@
-import { useState } from "react";
-import { GoX } from "react-icons/go";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import FileInput from "./components/FileInput";
+import useAuth from "../../../../auth/useAuth";
+import useRequests from "../../../../hooks/useRequests";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function WarrantyDocsUpload() {
   // tools
-  const authState = useSelector((state) => state.authState.userData);
+  const { userData } = useAuth();
 
-  const isLoading = false;
+  const navigate = useNavigate()
+
+  const [errorButton, setErrorButton] = useState(false);
+
+  const {
+    response: subResponse,
+    error: subError,
+    loading: subLoading,
+    postRequest: subPostRequest,
+    percentProgress: subPercent,
+  } = useRequests({
+    url: "/v1/request",
+    header: { "Content-Type": "multipart/form-data" },
+  });
 
   const [reqPayloadData, setReqPayloadData] = useState({
-    // user_id: authState.id,
+    user_id: userData.id,
     type: "bond",
-    title: `${authState.name} ${authState.family}`,
+    title: `${userData.name} ${userData.family}`,
     type_b: "job",
-    offered_bail: "",
-    letter: "",
-    credit: "",
+    offered_bail: "property",
+    letter: null,
+    credit: null,
   });
+
+  const onSubmit = () => {
+    if (reqPayloadData.letter && reqPayloadData.credit) {
+      subPostRequest(reqPayloadData);
+    } else {
+      toast.error("لطفا هردو فیلد مربوط به فایل را کامل کنید", {
+        autoClose: 2000,
+      });
+      setErrorButton(true);
+      setTimeout(() => {
+        setErrorButton(false);
+      }, 2000);
+    }
+  };
+
+  // request to success
+  useEffect(() => {
+    if (subResponse) {
+      toast.success("مرحله اول با موفقیت ثبت شد", { autoClose: 1000 });
+      navigate(`/user/warranty-complet/${subResponse.last_id}`);
+    }
+  }, [subResponse]);
+
   return (
     <div className=" ">
       <h2 className="p-6 text-2xl font-bold">
         بارگذاری مدارک درخواست ضمانت نامه
       </h2>
-      <div className=" mx-16 bg-white rounded-3xl pb-6">
-        <div className=" w-full flex gap-4 p-6">
+      <div className=" mx-16 max-lg:mx-auto bg-white rounded-3xl pb-6">
+        <div className=" w-full flex max-lg:flex-col gap-4 p-6">
           <select
-            className=" w-1/2 border border-p-7 p-2 rounded-xl text-g-5 outline-none"
+            className=" w-1/2 max-lg:w-full border border-p-7 p-2 rounded-xl text-g-5 outline-none"
             onChange={(e) =>
               setReqPayloadData((prev) => ({ ...prev, type_b: e.target.value }))
             }
@@ -45,9 +84,12 @@ function WarrantyDocsUpload() {
             <option value="credit">حد اعتباری</option>
           </select>
           <select
-            className=" w-1/2 border border-p-7 p-2 rounded-xl text-g-5 outline-none"
+            className=" w-1/2 max-lg:w-full border border-p-7 p-2 rounded-xl text-g-5 outline-none"
             onChange={(e) =>
-              setReqPayloadData((prev) => ({ ...prev, offered_bail: e.target.value }))
+              setReqPayloadData((prev) => ({
+                ...prev,
+                offered_bail: e.target.value,
+              }))
             }
             name=""
             id=""
@@ -56,8 +98,8 @@ function WarrantyDocsUpload() {
               {" "}
               نوع وثیقه را انتخاب کنید
             </option>
-            <option value="property">property</option>
-            <option value="cheque">cheque</option>
+            <option value="property">وثیقه ملکی</option>
+            <option value="cheque">چک</option>
           </select>
         </div>
 
@@ -71,50 +113,43 @@ function WarrantyDocsUpload() {
           <p className=" text-sm">فرمت های مجاز: doc , png , jpg</p>
         </div>
         <hr className="w-full border-2 border-dashed border-g-2" />
-        <div className=" w-full flex gap-4 p-6">
+        <div className=" w-full flex max-lg:flex-col gap-4 p-6">
           {/* box */}
-          <div className=" w-1/2 border border-g-4 p-2 rounded-xl text-g-5 ">
-            <div className=" w-full flex justify-between p-2">
-              <p className=" text-xs text-backColor">نامه درخواست ضمانتنامه</p>
-              <GoX />
-            </div>
-            {/* prosses bar */}
-            <div className=" p-2">
-              <div className="w-full bg-g-2 rounded-full h-2.5">
-                <div
-                  className=" bg-secondary h-2.5 rounded-full"
-                  style={{ width: "45%" }}
-                ></div>
-              </div>
-            </div>
-          </div>
+          <FileInput
+            currentValue={reqPayloadData.letter}
+            setCurrentValue={setReqPayloadData}
+            prossesPercent={subPercent}
+            loading={subLoading}
+            name={"letter"}
+            title={"نامه درخواست ضمانت"}
+          />
           {/* box */}
-          <div className=" w-1/2 border border-g-4 p-2 rounded-xl text-g-5 ">
-            <div className=" w-full flex justify-between p-2">
-              <p className=" text-xs text-backColor">نامه حد اعتباری</p>
-              <GoX />
-            </div>
-            {/* prosses bar */}
-            <div className=" p-2">
-              <div className="w-full bg-g-2 rounded-full h-2.5">
-                <div
-                  className=" bg-secondary h-2.5 rounded-full"
-                  style={{ width: "45%" }}
-                ></div>
-              </div>
-            </div>
-          </div>
+          <FileInput
+            currentValue={reqPayloadData.credit}
+            setCurrentValue={setReqPayloadData}
+            prossesPercent={subPercent}
+            loading={subLoading}
+            name={"credit"}
+            title={"نامه حد اعتباری"}
+          />
         </div>
         <div className=" w-full flex justify-center">
           <button
-            disabled={isLoading}
+            disabled={subLoading}
+            onClick={onSubmit}
             className={
-              isLoading
-                ? " text-white py-4 bg-g-6 hover:bg-g-7 rounded-lg w-2/3"
-                : " text-white py-4 bg-secondary hover:bg-secondary rounded-lg w-2/3"
+              errorButton
+                ? " transition text-white py-4 bg-red-600 rounded-lg w-2/3"
+                : subLoading
+                ? " transition text-white py-4 bg-g-6 hover:bg-g-7 rounded-lg w-2/3"
+                : " transition text-white py-4 bg-secondary hover:bg-secondary rounded-lg w-2/3"
             }
           >
-            ورود
+            {errorButton
+              ? "خطا در تکمیل اطلاعات"
+              : subLoading
+              ? "در حال ارسال..."
+              : "ورود"}
           </button>
         </div>
       </div>
