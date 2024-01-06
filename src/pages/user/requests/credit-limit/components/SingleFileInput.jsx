@@ -1,28 +1,40 @@
 import React from "react";
 import { GoX } from "react-icons/go";
 
-function FileInput({
+function SingleFileInput({
   name,
   title,
   currentValue,
   setCurrentValue,
   loading,
+  error,
   prossesPercent,
 }) {
   const removeHandler = (fildeName) => {
     setCurrentValue((prev) => ({ ...prev, [fildeName]: null }));
   };
   return (
-    <div className=" w-full border border-g-4 p-2 rounded-xl text-g-5 ">
+    <div
+      className={
+        error
+          ? " w-full border border-red-600 p-2 rounded-xl text-g-5 "
+          : " w-full border border-[#D2D1D4] p-2 rounded-xl text-g-5 "
+      }
+    >
       <div className=" w-full flex justify-between p-2">
         <p className=" text-xs text-backColor">{title}</p>
-        {currentValue && <GoX className=" hover:text-red-500 cursor-pointer" onClick={() => removeHandler(name)} />}
       </div>
       <div className=" w-full">
         {currentValue && (
-          <p className=" w-full break-normal">
-            نام فایل :{currentValue.name.slice(0, 25)}...
-          </p>
+          <div className=" flex items-center gap-2">
+            <GoX
+              className=" hover:text-red-500 cursor-pointer"
+              onClick={() => removeHandler(name)}
+            />
+            <p className=" w-full break-normal">
+              نام فایل :{currentValue.name.slice(0, 25)}...
+            </p>
+          </div>
         )}
       </div>
       {!loading && (
@@ -64,4 +76,4 @@ function FileInput({
   );
 }
 
-export default FileInput;
+export default SingleFileInput;

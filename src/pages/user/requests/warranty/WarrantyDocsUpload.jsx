@@ -135,8 +135,8 @@ function WarrantyDocsUpload() {
         </div>
         <div className=" w-full flex justify-center">
           <button
-            disabled={subLoading}
             onClick={onSubmit}
+            disabled={subLoading}
             className={
               errorButton
                 ? " transition text-white py-4 bg-red-600 rounded-lg w-2/3"
