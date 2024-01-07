@@ -51,6 +51,7 @@ export default {
       yellow: colors.amber,
       pink: colors.fuchsia,
       blue : colors.blue,
+      green : colors.green,
       red : colors.red
 
     },

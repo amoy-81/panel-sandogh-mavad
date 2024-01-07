@@ -19,6 +19,8 @@ import GenuineProfile from "./pages/user/update-profile/GenuineProfile";
 import UpdateGenuineProfile from "./pages/user/update-profile/UpdateGenuineProfile";
 import LegalProfile from "./pages/user/update-profile/LegalProfile";
 import UpdateLegalProfile from "./pages/user/update-profile/UpdateLegalProfile";
+import ViewRequest from "./pages/user/requests/view-request/ViewRequest";
+import Support from "./pages/user/tiket/Support";
 
 const router = createBrowserRouter([
   // user routes
@@ -39,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "current-requests",
         element: <CurrentRequests />,
+      },
+      {
+        path: "view-requests/:requestId",
+        element: <ViewRequest />,
       },
       {
         path: "warranty-docs-upload",
@@ -65,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "new-tiket",
         element: <NewTicket />,
+      },
+      {
+        path: "support/:tiketId",
+        element: <Support />,
       },
       {
         path: "notifications",

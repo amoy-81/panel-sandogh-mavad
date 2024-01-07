@@ -3,8 +3,10 @@ import Loader from "../../../components/loader/Loader";
 import useRequests from "../../../hooks/useRequests";
 import { useEffect } from "react";
 import { onlyDateConversion } from "../../../helper/dateConversion";
+import useAuth from "../../../auth/useAuth";
 
 function CurrentRequests() {
+  const { userData } = useAuth();
   const {
     response: currentRequestsRes,
     error: currentRequestsErr,
@@ -30,7 +32,13 @@ function CurrentRequests() {
           currentRequestsRes.map((item) => {
             return (
               <div key={item.id} className="p-3 w-1/3">
-                <Link to={`/panel/viewRequest/${item.id}`}>
+                <Link
+                  to={`/${
+                    userData.type === "genuine" || userData.type === "legal"
+                      ? "user"
+                      : userData.type
+                  }/view-requests/${item.id}`}
+                >
                   <div className="bg-white rounded-xl p-4  ">
                     <div className="flex justify-between">
                       <div className="flex items-center">
@@ -52,7 +60,8 @@ function CurrentRequests() {
                               : item.status === "credit"
                               ? "text-green-400 font-bold mx-2 text-xs"
                               : "text-blue-800 font-bold mx-2 text-xs"
-                          }>
+                          }
+                        >
                           {item.status === "null" || item.status === null
                             ? "در انتظار بررسی"
                             : item.status === "check"

@@ -113,6 +113,55 @@ function useRequests({ url, header }) {
       });
   };
 
+  const putRequest = (data) => {
+    setLoading(true);
+    setPercentProgress(0);
+    httpService
+      .put(url, data, {
+        headers: {
+          authorization: `bearer ${
+            authState && authState.token
+              ? authState.token
+              : isJson(token)
+              ? JSON.parse(token)
+              : token
+          }`,
+          ...header,
+        },
+        onUploadProgress: (pe) => {
+          setPercentProgress((pe.loaded / pe.total) * 100);
+        },
+      })
+      .then((res) => {
+        setLoading(false);
+        setResponse(res.data);
+      })
+      .catch((err) => {
+        setLoading(false);
+        if (
+          err.response &&
+          (err.response.status === 403 || err.response.status === 401)
+        ) {
+          //   token expare
+          setError("توکن منقضی شده است");
+          toast.error("زمان شما به پایان رسید , درحال انتقال به صفحه ورود...", {
+            autoClose: 2000,
+          });
+
+          //   redirect to login after 2s
+          setTimeout(() => {
+            navigate("/auth/login");
+          }, 2000);
+        } else {
+          toast.error(err.response.data?.message || "خطا در انجام درخواست", {
+            autoClose: 2000,
+          });
+          setError(err.response.data?.message || "خطا در ارتباط");
+          setErrorResponse(err.response?.data ? err.response?.data : null);
+        }
+      });
+  };
+
   const deleteRequest = () => {
     setLoading(true);
     httpService
@@ -166,6 +215,7 @@ function useRequests({ url, header }) {
     errorResponse,
     getRequest,
     postRequest,
+    putRequest,
     deleteRequest,
   };
 }

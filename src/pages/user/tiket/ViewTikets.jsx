@@ -86,7 +86,7 @@ function ViewTikets() {
                           authState.type === "legal"
                             ? "user"
                             : authState.type
-                        }/suport/${item.id}`}
+                        }/support/${item.id}`}
                         className=" text-secondary border border-secondary rounded-xl p-2 px-3"
                       >
                         مشاهده
