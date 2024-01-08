@@ -7,6 +7,7 @@ function FileInput({
   currentValue,
   setCurrentValue,
   loading,
+  accept,
   prossesPercent,
 }) {
   const removeHandler = (fildeName) => {
@@ -16,7 +17,12 @@ function FileInput({
     <div className=" w-full border border-g-4 p-2 rounded-xl text-g-5 ">
       <div className=" w-full flex justify-between p-2">
         <p className=" text-xs text-backColor">{title}</p>
-        {currentValue && <GoX className=" hover:text-red-500 cursor-pointer" onClick={() => removeHandler(name)} />}
+        {currentValue && (
+          <GoX
+            className=" hover:text-red-500 cursor-pointer"
+            onClick={() => removeHandler(name)}
+          />
+        )}
       </div>
       <div className=" w-full">
         {currentValue && (
@@ -40,6 +46,7 @@ function FileInput({
       <input
         className=" hidden"
         type="file"
+        accept={accept ? accept : null}
         id={name}
         name={name}
         onChange={(e) =>

@@ -6,14 +6,14 @@ import { onlyDateConversion } from "../../../helper/dateConversion";
 import useAuth from "../../../auth/useAuth";
 import requestStatusConvert from "../../../helper/requestStatusConvert";
 
-function CurrentRequests() {
+function ExpertCurrentRequests() {
   const { userData } = useAuth();
   const {
     response: currentRequestsRes,
     error: currentRequestsErr,
     loading: currentRequestsLoading,
     getRequest: getCurrentRequests,
-  } = useRequests({ url: "/v1/get_current_request_user" });
+  } = useRequests({ url: `/admin/get_current_requests/${userData.id}` });
 
   useEffect(() => {
     getCurrentRequests();
@@ -32,47 +32,38 @@ function CurrentRequests() {
         {currentRequestsRes &&
           currentRequestsRes.map((item) => {
             return (
-              <div key={item.id} className="p-3 w-1/3">
+              <div key={item.request.id} className="p-3 w-1/3">
                 <Link
                   to={`/${
                     userData.type === "genuine" || userData.type === "legal"
                       ? "user"
                       : userData.type
-                  }/view-requests/${item.id}`}
+                  }/check-request/${item.request.id}`}
                 >
                   <div className="bg-white rounded-xl p-4  ">
                     <div className="flex justify-between">
-                      <div className="flex items-center">
-                        <p className="bg-s-2 p-0.5 pt-1 px-2 rounded-lg text-secondary text-xs">
-                          وضعیت:
-                        </p>
-                        <p className={"text-blue-800 font-bold mx-2 text-xs"}>
-                          {item.status && requestStatusConvert(item.status)}
-                        </p>
-                      </div>
                       <p className="text-sm">
-                        {onlyDateConversion(item.created_at)}
+                        {onlyDateConversion(item.request.created_at)}
                       </p>
                     </div>
                     <p className="font-bold text-sm pt-2 ">
-                      {item.type === "facilities"
+                      {item.request.type === "facilities"
                         ? "درخواست تسهیلات"
-                        : item.type === "warranty"
+                        : item.request.type === "warranty"
                         ? "درخواست حد اعتباری"
                         : "درخواست ضمانت"}
                     </p>
-                    {item.facilities.length > 0 && (
-                      <p className="font-bold text-sm pt-2 ">{`عنوان : ${item.facilities[0].title}`}</p>
+                    {item.request.facilities?.length > 0 && (
+                      <p className="font-bold text-sm pt-2 ">{`عنوان : ${item.request.facilities[0].title}`}</p>
                     )}
-                    {item.warranty.length > 0 && (
-                      <p className="font-bold text-sm pt-2 ">{`عنوان : ${item.warranty[0].title}`}</p>
+                    {item.request.warranty?.length > 0 && (
+                      <p className="font-bold text-sm pt-2 ">{`عنوان : ${item.request.warranty[0].title}`}</p>
                     )}
-                    {item.bond.length > 0 && (
-                      <p className="font-bold text-sm pt-2 ">{`عنوان : ${item.bond[0].title}`}</p>
+                    {item.request.bond?.length > 0 && (
+                      <p className="font-bold text-sm pt-2 ">{`عنوان : ${item.request.bond[0].title}`}</p>
                     )}
-
                     <p className="font-bold text-xs text-gray-400 pb-2 ">
-                      شناسه درخواست : {item.shenaseh}
+                      شناسه درخواست : {item.request.shenaseh}
                     </p>
                   </div>
                 </Link>
@@ -84,4 +75,4 @@ function CurrentRequests() {
   );
 }
 
-export default CurrentRequests;
+export default ExpertCurrentRequests;

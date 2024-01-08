@@ -17,6 +17,33 @@ import { useSelector } from "react-redux";
 export function Sidebar({ userRule }) {
   const { userData } = useAuth();
   const { isOpen } = useSelector((state) => state.menuState);
+
+  const expertSidebar = [
+    {
+      title: "خانه",
+      links: ["/user/dashboard"],
+      icon: ExpertsIcon,
+    },
+    {
+      title: "درخواست ها",
+      drop: ["درخواست های جاری", "درخواست های رد شده"],
+      links: ["/expert/current-requests", "/panel/isfailedreqs"],
+      icon: SupportIcon,
+    },
+    {
+      title: "پشتیبانی",
+      drop: ["مشاهده تیکت ها", "ثبت تیکت ها"],
+      links: ["/panel/TestticketExpert", "/panel/addTicketE"],
+      icon: SupportIcon,
+    },
+    {
+      title: "اطلاعات کاربری",
+      drop: [" ویرایش اطلاعات"],
+      links: ["/panel/expertInfo"],
+      icon: UserIcon,
+    },
+  ];
+
   const userSidebar = [
     {
       title: "خانه",
@@ -54,7 +81,7 @@ export function Sidebar({ userRule }) {
       title: "اطلاعات کاربری",
       links: [
         `/user/${
-          userData.type === "genuine"
+          userData?.type === "genuine"
             ? "update_genuine_profile"
             : "update_legal_profile"
         }`,
@@ -72,9 +99,9 @@ export function Sidebar({ userRule }) {
       <img src={Line} alt="" />
       <Link
         to={`/${
-          userData.type === "genuine" || userData.type === "legal"
+          userData?.type === "genuine" || userData?.type === "legal"
             ? "user"
-            : userData.type
+            : userData?.type
         }/dashboard`}
         className=" my-8 font-bold text-[#0D294E]"
       >
@@ -82,12 +109,20 @@ export function Sidebar({ userRule }) {
       </Link>
       <nav className=" w-full px-4">
         <ul className=" text-[#0D294E] mb-2">
-          {userSidebar.map((item, index) => {
-            if (item.links.length === 1)
-              return <ListItem key={index} {...item} />;
-            if (item.links.length > 1)
-              return <Dropdown key={index} {...item} />;
-          })}
+          {(userData?.type === "genuine" || userData?.type === "legal") &&
+            userSidebar.map((item, index) => {
+              if (item.links.length === 1)
+                return <ListItem key={index} {...item} />;
+              if (item.links.length > 1)
+                return <Dropdown key={index} {...item} />;
+            })}
+          {userData?.type === "expert" &&
+            expertSidebar.map((item, index) => {
+              if (item.links.length === 1)
+                return <ListItem key={index} {...item} />;
+              if (item.links.length > 1)
+                return <Dropdown key={index} {...item} />;
+            })}
         </ul>
       </nav>
     </section>

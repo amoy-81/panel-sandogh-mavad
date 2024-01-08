@@ -24,7 +24,7 @@ export function Topbar() {
     loading: showUserLoading,
     getRequest: showUserGetRequest,
   } = useRequests({
-    url: `v1/show_user/${userData.id}`,
+    url: `v1/show_user/${userData?.id}`,
   });
 
   const {
@@ -63,7 +63,7 @@ export function Topbar() {
           ></div>
         </div>
         <h1 className=" text-[#0D294E] max-lg:hidden font-extrabold flex items-center">
-          {userData.name} {userData.family} گرامی
+          {userData?.name} {userData?.family} گرامی
         </h1>
         <div className=" flex gap-10">
           <button onClick={() => setShowNotif(true)} className=" flex items-center max-lg:hidden ">
@@ -113,18 +113,18 @@ export function Topbar() {
             className="w-20 h-20 rounded-full mx-auto border-2 border-primary"
           />
           <h2 className="font-bold my-3 mb-1">
-            {userData.name} {userData.family}
+            {userData?.name} {userData?.family}
           </h2>
           <a className="text-xs text-p-6 font-semibold">
-            {userData.email && userData.email !== ""
-              ? userData.email
+            {userData?.email && userData?.email !== ""
+              ? userData?.email
               : "فاقد پست الکترونیکی"}
           </a>
         </div>
-        <div className=" flex w-full gap-4 text-center mb-5 max-md:flex-col">
-          <h2 className=" cursor-pointer w-1/3 max-md:w-full py-2 px-4 bg-p-5 hover:bg-primary transition text-white rounded-2xl">
+        <div className=" flex w-full gap-4 text-center mb-5 max-md:flex-col" onClick={() => setShowMenu(false)}>
+          <Link to={`/${userData?.type === 'genuine' || userData?.type === 'legal' ? 'user' : userData?.type}/notifications`} className=" cursor-pointer w-1/3 max-md:w-full py-2 px-4 bg-p-5 hover:bg-primary transition text-white rounded-2xl">
             اعلانات
-          </h2>
+          </Link>
           <h2 className=" cursor-pointer w-1/3 max-md:w-full py-2 px-4 bg-p-5 hover:bg-primary transition text-white rounded-2xl">
             اطلاعات کاربری
           </h2>

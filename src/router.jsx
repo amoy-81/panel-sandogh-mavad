@@ -21,6 +21,15 @@ import LegalProfile from "./pages/user/update-profile/LegalProfile";
 import UpdateLegalProfile from "./pages/user/update-profile/UpdateLegalProfile";
 import ViewRequest from "./pages/user/requests/view-request/ViewRequest";
 import Support from "./pages/user/tiket/Support";
+import ExpertDashboard from "./pages/expert/dashboard/Dashboard";
+import ExpertCurrentRequests from "./pages/expert/current-requests/CurrentRequests";
+import CheckRequestLayout from "./pages/expert/check-request/layout/CheckRequestLayout";
+import RecordCheck from "./pages/expert/check-request/check-steps/RecordCheck";
+import RecordAssessment from "./pages/expert/check-request/check-steps/RecordAssessment";
+import RecordReport from "./pages/expert/check-request/check-steps/RecordReport";
+import Loader from "./components/loader/Loader";
+import RecordCommite from "./pages/expert/check-request/check-steps/RecordCommite";
+import RecordCredit from "./pages/expert/check-request/check-steps/RecordCredit";
 
 const router = createBrowserRouter([
   // user routes
@@ -110,11 +119,56 @@ const router = createBrowserRouter([
   // expert routes
   {
     path: "/expert",
-    element: <PanelLayout />,
+
+    element: (
+      <PrivateRoutes>
+        <PanelLayout />
+      </PrivateRoutes>
+    ),
     children: [
       {
         path: "dashboard",
-        element: <Dashboard />,
+        element: <ExpertDashboard />,
+      },
+      {
+        path: "current-requests",
+        element: <ExpertCurrentRequests />,
+      },
+      // check request
+      {
+        path: "check-request",
+        element: <CheckRequestLayout />,
+        children: [
+          {
+            path: ":requestId",
+            index: true,
+            element: (
+              <div className=" relative w-full h-full">
+                <Loader />
+              </div>
+            ),
+          },
+          {
+            path: "check/:requestId",
+            element: <RecordCheck />,
+          },
+          {
+            path: "assessment/:requestId",
+            element: <RecordAssessment />,
+          },
+          {
+            path: "report/:requestId",
+            element: <RecordReport />,
+          },
+          {
+            path: "commite/:requestId",
+            element: <RecordCommite />,
+          },
+          {
+            path: "credit/:requestId",
+            element: <RecordCredit />,
+          },
+        ],
       },
     ],
   },
