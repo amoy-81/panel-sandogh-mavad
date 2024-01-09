@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import UserIcon from "@assets/png/user.png";
+import useRequests from "../../../../../hooks/useRequests";
 
-function ExpertDetails() {
+function ExpertDetails({ requestId }) {
+  // const {
+  //   response: expertResponse,
+  //   error: expertError,
+  //   loading: expertLoading,
+  //   getRequest: getExpert,
+  // } = useRequests({
+  //   url: `/v1/get_expert/${requestId}`,
+  // });
+
+  // useEffect(() => {
+  //   getExpert();
+  // }, []);
+
+  // console.log(expertResponse)
   return (
     <div className=" w-1/3 p-4 bg-white">
       <h1 className=" p-2 font-extrabold"> کارشناس</h1>
@@ -33,7 +48,6 @@ function ExpertDetails() {
           <hr className="w-3/4 border-[1px] border-dashed border-g-2" />
         </div>
       </div>
-      
     </div>
   );
 }

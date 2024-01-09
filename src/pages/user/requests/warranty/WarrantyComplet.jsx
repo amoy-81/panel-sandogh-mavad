@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import FileInput from "./components/FileInput";
 import useRequests from "../../../../hooks/useRequests";
 import { toast } from "react-toastify";
+import Loader from "../../../../components/loader/Loader";
 
 function WarrantyComplet() {
   const { bondId } = useParams();
@@ -20,6 +21,15 @@ function WarrantyComplet() {
   } = useRequests({
     url: "/v1/evidence",
     header: { "Content-Type": "multipart/form-data" },
+  });
+
+  const {
+    response: getWageResponse,
+    error: getWageError,
+    loading: getWageLoading,
+    getRequest: getWageRequest,
+  } = useRequests({
+    url: `/get_wage/${bondId}`,
   });
 
   const [reqPayloadData, setReqPayloadData] = useState({
@@ -50,6 +60,8 @@ function WarrantyComplet() {
       navigate(`/user/current-requests`);
     }
   }, [subResponse]);
+
+  if (getWageLoading) return <Loader />;
 
   return (
     <div className=" ">

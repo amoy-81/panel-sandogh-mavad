@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useRequests from "../../../../../hooks/useRequests";
+import { useLocation } from "react-router-dom";
+import requestStatusConvert from "../../../../../helper/requestStatusConvert";
 
 function StatusBar({ requestId }) {
+  const { pathname } = useLocation();
   const {
     response: statusResponse,
     error: statusError,
@@ -11,9 +14,25 @@ function StatusBar({ requestId }) {
     url: `/v1/get_all_status/${requestId}`,
   });
 
+  const [statusNames, setStatusNames] = useState(null);
+
   useEffect(() => {
     getStatus();
-  }, []);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (statusResponse) {
+      const wfStatus = ["check", "assessment", "report", "commite", "credit"];
+      const bStatus = [
+        "check",
+        "wage",
+        "evidence",
+        "check_evidence",
+        "agreement",
+      ];
+      setStatusNames(statusResponse.type === "bond" ? bStatus : wfStatus);
+    }
+  }, [statusResponse]);
 
   return (
     <div className="flex justify-center items-center">
@@ -21,7 +40,7 @@ function StatusBar({ requestId }) {
         <p
           className={
             statusResponse?.check
-              ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
+              ? "bg-s-2 p-0.5 pt-1 px-3 rounded-xl  text-secondary "
               : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "
           }
         >
@@ -30,18 +49,18 @@ function StatusBar({ requestId }) {
         <p
           className={
             statusResponse?.check
-              ? "text-blue-800 font-bold mx-2 text-sm"
+              ? " text-secondary font-bold mx-2 text-sm"
               : "text-gray-300 font-bold mx-2 text-sm"
           }
         >
-          بررسی مدارک
+          {requestStatusConvert(statusNames?.[0])}
         </p>
       </div>
       <div className="w-10 px-2">
         <div
           className={
-            statusResponse?.assessment
-              ? "border-t border-2 border-blue-800 h-full rounded"
+            statusResponse?.assessment || statusResponse?.wage
+              ? "border-t border-2  border-secondary h-full rounded"
               : "border-t border-2 border-gray-300 h-full rounded"
           }
         ></div>
@@ -49,8 +68,8 @@ function StatusBar({ requestId }) {
       <div className="flex items-center">
         <p
           className={
-            statusResponse?.assessment
-              ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
+            statusResponse?.assessment || statusResponse?.wage
+              ? "bg-s-2 p-0.5 pt-1 px-3 rounded-xl  text-secondary "
               : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "
           }
         >
@@ -58,20 +77,20 @@ function StatusBar({ requestId }) {
         </p>
         <p
           className={
-            statusResponse?.assessment
-              ? "text-blue-800 font-bold mx-2 text-sm"
+            statusResponse?.assessment || statusResponse?.wage
+              ? " text-secondary font-bold mx-2 text-sm"
               : "text-gray-300 font-bold mx-2 text-sm"
           }
         >
           {" "}
-          ارزیابی{" "}
+          {requestStatusConvert(statusNames?.[1])}
         </p>
       </div>
       <div className="w-10 px-2">
         <div
           className={
-            statusResponse?.report
-              ? "border-t border-2 border-blue-800 h-full rounded"
+            statusResponse?.report || statusResponse?.evidence
+              ? "border-t border-2  border-secondary h-full rounded"
               : "border-t border-2 border-gray-300 h-full rounded"
           }
         ></div>
@@ -79,8 +98,8 @@ function StatusBar({ requestId }) {
       <div className="flex items-center">
         <p
           className={
-            statusResponse?.report
-              ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
+            statusResponse?.report || statusResponse?.evidence
+              ? "bg-s-2 p-0.5 pt-1 px-3 rounded-xl  text-secondary "
               : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "
           }
         >
@@ -88,19 +107,19 @@ function StatusBar({ requestId }) {
         </p>
         <p
           className={
-            statusResponse?.report
-              ? "text-blue-800 font-bold mx-2 text-sm"
+            statusResponse?.report || statusResponse?.evidence
+              ? " text-secondary font-bold mx-2 text-sm"
               : "text-gray-300 font-bold mx-2 text-sm"
           }
         >
-          گزارش ارزیابی
+          {requestStatusConvert(statusNames?.[2])}
         </p>
       </div>
       <div className="w-10 px-2">
         <div
           className={
-            statusResponse?.commite
-              ? "border-t border-2 border-blue-800 h-full rounded"
+            statusResponse?.commite || statusResponse?.check_evidence
+              ? "border-t border-2  border-secondary h-full rounded"
               : "border-t border-2 border-gray-300 h-full rounded"
           }
         ></div>
@@ -108,8 +127,8 @@ function StatusBar({ requestId }) {
       <div className="flex items-center">
         <p
           className={
-            statusResponse?.commite
-              ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
+            statusResponse?.commite || statusResponse?.check_evidence
+              ? "bg-s-2 p-0.5 pt-1 px-3 rounded-xl  text-secondary "
               : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "
           }
         >
@@ -117,19 +136,19 @@ function StatusBar({ requestId }) {
         </p>
         <p
           className={
-            statusResponse?.commite
-              ? "text-blue-800 font-bold mx-2 text-sm"
+            statusResponse?.commite || statusResponse?.check_evidence
+              ? " text-secondary font-bold mx-2 text-sm"
               : "text-gray-300 font-bold mx-2 text-sm"
           }
         >
-          کمیته
+          {requestStatusConvert(statusNames?.[3])}
         </p>
       </div>
       <div className="w-10 px-2">
         <div
           className={
-            statusResponse?.credit
-              ? "border-t border-2 border-blue-800 h-full rounded"
+            statusResponse?.committee || statusResponse?.agreement
+              ? "border-t border-2  border-secondary h-full rounded"
               : "border-t border-2 border-gray-300 h-full rounded"
           }
         ></div>
@@ -137,8 +156,8 @@ function StatusBar({ requestId }) {
       <div className="flex items-center">
         <p
           className={
-            statusResponse?.credit
-              ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
+            statusResponse?.committee || statusResponse?.agreement
+              ? "bg-s-2 p-0.5 pt-1 px-3 rounded-xl  text-secondary "
               : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "
           }
         >
@@ -146,12 +165,12 @@ function StatusBar({ requestId }) {
         </p>
         <p
           className={
-            statusResponse?.credit
-              ? "text-blue-800 font-bold mx-2 text-sm"
+            statusResponse?.committee || statusResponse?.agreement
+              ? " text-secondary font-bold mx-2 text-sm"
               : "text-gray-300 font-bold mx-2 text-sm"
           }
         >
-          اعلام حد اعتباری
+          {requestStatusConvert(statusNames?.[4])}
         </p>
       </div>
     </div>

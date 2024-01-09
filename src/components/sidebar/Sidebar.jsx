@@ -21,25 +21,25 @@ export function Sidebar({ userRule }) {
   const expertSidebar = [
     {
       title: "خانه",
-      links: ["/user/dashboard"],
+      links: ["/expert/dashboard"],
       icon: ExpertsIcon,
     },
     {
       title: "درخواست ها",
       drop: ["درخواست های جاری", "درخواست های رد شده"],
-      links: ["/expert/current-requests", "/panel/isfailedreqs"],
+      links: ["/expert/current-requests", "/expert/dashboard"],
       icon: SupportIcon,
     },
     {
       title: "پشتیبانی",
       drop: ["مشاهده تیکت ها", "ثبت تیکت ها"],
-      links: ["/panel/TestticketExpert", "/panel/addTicketE"],
+      links: ["/expert/dashboard", "/expert/dashboard"],
       icon: SupportIcon,
     },
     {
       title: "اطلاعات کاربری",
       drop: [" ویرایش اطلاعات"],
-      links: ["/panel/expertInfo"],
+      links: ["/expert/dashboard"],
       icon: UserIcon,
     },
   ];

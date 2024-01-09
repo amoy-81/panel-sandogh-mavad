@@ -64,6 +64,9 @@ function CheckRequestLayout({ children }) {
       if (viewRequestResponse.status === "committee") {
         return navigate(`/expert/check-request/credit/${requestId}`);
       }
+      if (viewRequestResponse.status === "agreement") {
+        return navigate(`/expert/check-request/agreement/${requestId}`);
+      }
 
       if (statusIndex === -1) {
         navigate(`/expert/check-request/check/${requestId}`);

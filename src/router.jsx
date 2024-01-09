@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import PanelLayout from "./layout/PanelLayout";
 import Dashboard from "./pages/user/dashboard/Dashboard";
 import AuthLayout from "./layout/AuthLayout";
@@ -30,6 +30,13 @@ import RecordReport from "./pages/expert/check-request/check-steps/RecordReport"
 import Loader from "./components/loader/Loader";
 import RecordCommite from "./pages/expert/check-request/check-steps/RecordCommite";
 import RecordCredit from "./pages/expert/check-request/check-steps/RecordCredit";
+import RecordWage from "./pages/expert/check-request/check-steps/RecordWage";
+import RecordEvidence from "./pages/expert/check-request/check-steps/RecordEvidence";
+import RecordCheck_evidence from "./pages/expert/check-request/check-steps/RecordCheck_evidence";
+import UserViewRequest from "./pages/user/requests/view-request/layout/UserViewRequestLayout";
+import UserViewRequestLayout from "./pages/user/requests/view-request/layout/UserViewRequestLayout";
+import RecordAgreement from "./pages/expert/check-request/check-steps/RecordAgreement";
+import ViewBondRequest from "./pages/user/requests/view-request/ViewBondRequest";
 
 const router = createBrowserRouter([
   // user routes
@@ -52,10 +59,6 @@ const router = createBrowserRouter([
         element: <CurrentRequests />,
       },
       {
-        path: "view-requests/:requestId",
-        element: <ViewRequest />,
-      },
-      {
         path: "warranty-docs-upload",
         element: <WarrantyDocsUpload />,
       },
@@ -70,6 +73,22 @@ const router = createBrowserRouter([
       {
         path: "facilities",
         element: <Facilities />,
+      },
+
+      // view requests
+      {
+        path: "view-requests",
+        element: <UserViewRequestLayout />,
+        children: [
+          {
+            path: "bond/:requestId",
+            element: <ViewBondRequest />,
+          },
+          {
+            path: "wf/:requestId",
+            element: <ViewRequest />,
+          },
+        ],
       },
 
       // support
@@ -134,6 +153,11 @@ const router = createBrowserRouter([
         path: "current-requests",
         element: <ExpertCurrentRequests />,
       },
+      {
+        path: "notifications",
+        element: <Notifications />,
+      },
+
       // check request
       {
         path: "check-request",
@@ -167,6 +191,23 @@ const router = createBrowserRouter([
           {
             path: "credit/:requestId",
             element: <RecordCredit />,
+          },
+          // bond type
+          {
+            path: "wage/:requestId",
+            element: <RecordWage />,
+          },
+          {
+            path: "evidence/:requestId",
+            element: <RecordEvidence />,
+          },
+          {
+            path: "check_evidence/:requestId",
+            element: <RecordCheck_evidence />,
+          },
+          {
+            path: "agreement/:requestId",
+            element: <RecordAgreement />,
           },
         ],
       },
@@ -203,6 +244,11 @@ const router = createBrowserRouter([
         element: <PhoneVerify />,
       },
     ],
+  },
+
+  {
+    path: "*",
+    element: <Navigate to={"/auth/login"} />,
   },
 ]);
 

@@ -34,11 +34,18 @@ function CurrentRequests() {
             return (
               <div key={item.id} className="p-3 w-1/3">
                 <Link
-                  to={`/${
-                    userData.type === "genuine" || userData.type === "legal"
-                      ? "user"
-                      : userData.type
-                  }/view-requests/${item.id}`}
+                  to={
+                    item.type === "bond"
+                      ? item.status === "wage"
+                        ? `/user/warranty-complet/${item.bond[0].id}`
+                        : `/user/view-requests/bond/${item.id}`
+                      : `/${
+                          userData.type === "genuine" ||
+                          userData.type === "legal"
+                            ? "user"
+                            : userData.type
+                        }/view-requests/wf/${item.id}`
+                  }
                 >
                   <div className="bg-white rounded-xl p-4  ">
                     <div className="flex justify-between">

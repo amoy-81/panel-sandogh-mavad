@@ -51,8 +51,8 @@ function WarrantyDocsUpload() {
   // request to success
   useEffect(() => {
     if (subResponse) {
-      toast.success("مرحله اول با موفقیت ثبت شد", { autoClose: 1000 });
-      navigate(`/user/warranty-complet/${subResponse.last_id}`);
+      toast.success("درخواست ثبت شد", { autoClose: 1000 });
+      navigate(`/user/current-requests`);
     }
   }, [subResponse]);
 

@@ -12,21 +12,21 @@ function ExpertDashboard() {
       <h2 className="text-2xl font-bold">دسترسی سریع</h2>
       <div className="flex gap-6 text-white max-lg:flex-col">
         <div className="w-1/3 max-lg:w-full h-28 flex justify-between items-center rounded-2xl bg-secondary relative overflow-hidden pr-11">
-          <Link to="/user/warranty-docs-upload">ثبت درخواست ضانت نامه</Link>
+          <Link to="/expert/current-requests">درخواست های جاری</Link>
           <div>
             <img className="absolute left-1 inset-y-0" src={Ellipse6} alt="" />
             <img className="absolute left-0 inset-y-0" src={Ellipse5} alt="" />
           </div>
         </div>
         <div className="w-1/3 max-lg:w-full h-28 flex justify-between items-center rounded-2xl bg-secondary relative overflow-hidden pr-11">
-          <Link to="/user/facilities">ثبت درخواست تسهیلات</Link>
+          <Link to="/expert/current-requests">مشاهده تیکت ها</Link>
           <div>
             <img className="absolute left-0 inset-y-0" src={Ellipse2} alt="" />
             <img className="absolute left-0 inset-y-0" src={Ellipse1} alt="" />
           </div>
         </div>
         <div className="w-1/3 max-lg:w-full h-28 flex justify-between items-center rounded-2xl bg-secondary relative overflow-hidden pr-11">
-          <Link to="/user/guide">راهنمای سایت</Link>
+          <Link to="/expert/notifications">اعلان ها</Link>
           <div>
             <img className="absolute left-1 inset-y-0" src={Ellipse4} alt="" />
             <img className="absolute left-0 inset-y-0" src={Ellipse3} alt="" />

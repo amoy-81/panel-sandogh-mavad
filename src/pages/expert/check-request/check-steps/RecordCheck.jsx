@@ -12,6 +12,15 @@ function RecordCheck() {
   const [showDefectreport, setShowDefectreport] = useState(false);
 
   const {
+    response: allStatusResponse,
+    error: allStatusError,
+    loading: allStatusLoading,
+    getRequest: getallStatus,
+  } = useRequests({
+    url: `/v1/get_all_status/${requestId}`,
+  });
+
+  const {
     response: checkDocumentsRes,
     error: checkDocumentsErr,
     loading: checkDocumentsLoading,
@@ -30,9 +39,17 @@ function RecordCheck() {
   };
 
   useEffect(() => {
+    getallStatus();
+  }, []);
+
+  useEffect(() => {
     if (checkDocumentsRes) {
       toast.success(`تغییرات ثبت شد`);
-      navigate(`/expert/check-request/assessment/${requestId}`);
+      navigate(
+        allStatusResponse?.type
+          ? `/expert/check-request/wage/${requestId}`
+          : `/expert/check-request/assessment/${requestId}`
+      );
     }
   }, [checkDocumentsRes]);
 
@@ -41,6 +58,8 @@ function RecordCheck() {
       toast("خطادر برقراری ارتباط");
     }
   }, [checkDocumentsErr]);
+
+  if (allStatusLoading) return <Loader />;
 
   return (
     <>

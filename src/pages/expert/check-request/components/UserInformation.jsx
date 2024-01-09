@@ -34,26 +34,26 @@ function UserInformation({ showUserResponse }) {
       </div>
       <div className=" w-full flex gap-2 text-center">
         <Link
-          to={`/مشاهده مدارک`}
-          className=" w-full p-2 border-2 font-semibold border-[#B9393A] text-[#B9393A] rounded-lg hover:text-white hover:bg-[#B9393A] transition"
-        >
-          ناقصی مدارک
-        </Link>
-        <Link
-          to={`/مشاهده مدارک`}
-          className=" w-full p-2 border-2 font-semibold border-secondary text-secondary rounded-lg hover:text-white hover:bg-secondary transition"
+          to={`/expert/current-requests`}
+          className=" w-full p-2 border-2 font-semibold border-primary text-primary rounded-lg hover:text-white hover:bg-primary transition"
         >
           مشاهده مدارک
         </Link>
+        <Link
+          to={`/expert/current-requests`}
+          className=" w-full p-2 border-2 font-semibold border-secondary text-secondary rounded-lg hover:text-white hover:bg-secondary transition"
+        >
+          بازگشت
+        </Link>
       </div>
-      <div className=" w-full mt-2 text-center">
+      {/* <div className=" w-full mt-2 text-center">
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/expert/current-requests")}
           className=" w-full p-2 border-2 font-semibold border-secondary text-secondary hover:text-white hover:bg-secondary rounded-lg transition"
         >
           بازگشت
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
