@@ -74,7 +74,7 @@ const DashboardAdmin = () => {
             </div>
           </div>
           <div className="w-1/3 h-24 flex justify-between items-center rounded-2xl  bg-secondary relative overflow-hidden pr-11">
-            <Link to="/panel/viewExpert">مشاهده کارشناسان</Link>
+            <Link to="/admin/view-experts">مشاهده کارشناسان</Link>
             <div>
               <img
                 className="absolute left-1 inset-y-0"
@@ -89,7 +89,7 @@ const DashboardAdmin = () => {
             </div>
           </div>
           <div className="w-1/3 h-24 flex justify-between items-center rounded-2xl  bg-secondary relative overflow-hidden pr-11">
-            <Link to="/panel/viewUsers">مشاهده کاربران</Link>
+            <Link to="/admin/view-users">مشاهده کاربران</Link>
             <div>
               <img
                 className="absolute left-1 inset-y-0"

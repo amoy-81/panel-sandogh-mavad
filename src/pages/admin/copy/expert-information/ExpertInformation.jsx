@@ -33,7 +33,7 @@ const ExpertInformation = () => {
       <hr className="border-dashed mt-3 mb-3" />
       {details && (
         <Link
-          to={`/panel/expertChangePassword/${details?.id}?name=${details?.name}_${details.family}`}
+          to={`/admin/expert-change-password/${details?.id}?name=${details?.name}_${details.family}`}
           style={{ cursor: "pointer" }}
           className=" text-primary p-4 py-6 "
         >
@@ -48,12 +48,12 @@ const ExpertInformation = () => {
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">محل صدور</p>
-          <p className="text-gray-500">{`${details?.profilegenuine.place_issue}`}</p>
+          <p className="text-gray-500">{`${details?.profilegenuine?.place_issue}`}</p>
         </div>
 
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">نام پدر</p>
-          <p className="text-gray-500">{`${details?.profilegenuine.father_name}`}</p>
+          <p className="text-gray-500">{`${details?.profilegenuine?.father_name}`}</p>
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">کد ملی</p>
@@ -61,15 +61,15 @@ const ExpertInformation = () => {
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">تاریخ تولد</p>
-          <p className="text-gray-500">{`${details?.profilegenuine.birth_day}`}</p>
+          <p className="text-gray-500">{`${details?.profilegenuine?.birth_day}`}</p>
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">شماره شناسنامه</p>
-          <p className="text-gray-500">{`${details?.profilegenuine.number_certificate}`}</p>
+          <p className="text-gray-500">{`${details?.profilegenuine?.number_certificate}`}</p>
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">سمت</p>
-          <p className="text-gray-500">{`${details?.profilegenuine.job}`}</p>
+          <p className="text-gray-500">{`${details?.profilegenuine?.job}`}</p>
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">تلفن همراه</p>
@@ -78,11 +78,11 @@ const ExpertInformation = () => {
 
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">میزان تحصیلات</p>
-          <p className="text-gray-500">{`${details?.profilegenuine.education}`}</p>
+          <p className="text-gray-500">{`${details?.profilegenuine?.education}`}</p>
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">رشته تحصیلی</p>
-          <p className="text-gray-500">{`${details?.profilegenuine.study}`}</p>
+          <p className="text-gray-500">{`${details?.profilegenuine?.study}`}</p>
         </div>
       </div>
       <p className="text-xl font-bold p-4 py-6">محل سکونت</p>
@@ -91,16 +91,16 @@ const ExpertInformation = () => {
       <div className="flex flex-wrap">
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">تلفن ثابت</p>
-          <p className="text-gray-500">{`${details?.profilegenuine.address.home_number}`}</p>
+          <p className="text-gray-500">{`${details?.profilegenuine?.address.home_number}`}</p>
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">آدرس</p>
-          <p className="text-gray-500">{`${details?.profilegenuine.address.address}`}</p>
+          <p className="text-gray-500">{`${details?.profilegenuine?.address.address}`}</p>
         </div>
 
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">کد پستی</p>
-          <p className="text-gray-500">{`${details?.profilegenuine.address.postal_code}`}</p>
+          <p className="text-gray-500">{`${details?.profilegenuine?.address.postal_code}`}</p>
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">پست الکترونیک</p>

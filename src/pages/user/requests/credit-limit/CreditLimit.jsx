@@ -151,7 +151,7 @@ function CreditLimit() {
           <p className="text-xs py-3">
             فرمت های مجاز doc, docx, pdf, zip, png, jpg
           </p>
-          <a href="https://backend.nanotf.ir/storage/docs/1_6271033281.zip">
+          <a href={`${import.meta.env.VITE_IMAGES_URL}/storage/docs/1_6271033281.zip`}>
             <button className="w-full border rounded-lg border-p-7 text-p-7 p-2 hover:bg-p-7 hover:text-white transition font-bold text-sm">
               بارگیری فایل مدارک اصلی
             </button>

@@ -41,6 +41,14 @@ import DashboardAdmin from "./pages/admin/dashboard/DashboardAdmin";
 import ViewExperts from "./pages/admin/experts/ViewExperts";
 import AddExpert from "./pages/admin/copy/add-expert/AddExpert";
 import ExpertInformation from "./pages/admin/copy/expert-information/ExpertInformation";
+import ViewUsers from "./pages/admin/copy/users/ViewUsers";
+import Requests from "./pages/admin/copy/requests/Requests";
+import DeletedRequests from "./pages/admin/copy/deleted-requests/DeletedRequests";
+import ViewTiketsAdmin from "./pages/admin/tikets/ViewTiketsAdmin";
+import AdminProfile from "./pages/admin/copy/profile/AdminProfile";
+import ViewUserInformation from "./pages/admin/copy/view-user-information/viewUserInformation";
+import ExpertChangePassword from "./pages/admin/copy/expert/ExpertChangePassword";
+import AdminCheckRequest from "./pages/admin/copy/admin-check-request/AdminCheckRequest";
 
 const router = createBrowserRouter([
   // user routes
@@ -250,6 +258,46 @@ const router = createBrowserRouter([
       {
         path: "expert-information/:id",
         element: <ExpertInformation />,
+      },
+      {
+        path: "view-users",
+        element: <ViewUsers />,
+      },
+      {
+        path: "requests",
+        element: <Requests />,
+      },
+      {
+        path: "failed-requests",
+        element: <FailedRequests />,
+      },
+      {
+        path: "deleted-requests",
+        element: <DeletedRequests />,
+      },
+      {
+        path: "view-tikets",
+        element: <ViewTiketsAdmin />,
+      },
+      {
+        path: "support/:tiketId",
+        element: <Support />,
+      },
+      {
+        path: "profile",
+        element: <AdminProfile />,
+      },
+      {
+        path: "view-user-information/:id",
+        element: <ViewUserInformation />,
+      },
+      {
+        path: "expert-change-password/:id",
+        element: <ExpertChangePassword />,
+      },
+      {
+        path: "admin-check-request/:id",
+        element: <AdminCheckRequest />,
       },
     ],
   },

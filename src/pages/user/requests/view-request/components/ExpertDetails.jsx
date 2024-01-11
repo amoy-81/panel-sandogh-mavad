@@ -28,8 +28,8 @@ function ExpertDetails({ requestId }) {
           نام و نام خانوادگی :
           <span className=" text-g-6 font-semibold">
             {" "}
-            {expertResponse?.[0].expert.name}{" "}
-            {expertResponse?.[0].expert.family}
+            {expertResponse?.length > 0 && expertResponse?.[0].expert?.name}{" "}
+            {expertResponse?.length > 0 && expertResponse?.[0].expert?.family}
           </span>
         </p>
 
@@ -37,7 +37,7 @@ function ExpertDetails({ requestId }) {
           شماره تلفن :
           <span className=" text-g-6 font-semibold">
             {" "}
-            {expertResponse?.[0].expert.phone}
+            {expertResponse?.length > 0 && expertResponse?.[0].expert?.phone}
           </span>
         </p>
         {!expertResponse && (

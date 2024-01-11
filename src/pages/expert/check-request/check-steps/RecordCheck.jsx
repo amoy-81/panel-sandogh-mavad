@@ -46,7 +46,7 @@ function RecordCheck() {
     if (checkDocumentsRes) {
       toast.success(`تغییرات ثبت شد`);
       navigate(
-        allStatusResponse?.type
+        allStatusResponse?.type === "bond"
           ? `/expert/check-request/wage/${requestId}`
           : `/expert/check-request/assessment/${requestId}`
       );

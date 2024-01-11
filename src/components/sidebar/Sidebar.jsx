@@ -32,26 +32,26 @@ export function Sidebar({ userRule }) {
     {
       title: "کاربران",
       drop: ["لیست کاربران"],
-      links: ["/admin/viewUsers"],
+      links: ["/admin/view-users"],
     },
     {
       title: "درخواست ها",
       drop: ["لیست درخواست ها", "درخواست های رد شده", "درخواست های حذف"],
       links: [
         "/admin/requests",
-        "/admin/isfailedreqs",
-        "/admin/ViewDeleteReqs",
+        "/admin/failed-requests",
+        "/admin/deleted-requests",
       ],
     },
     {
       title: "پشتیبانی",
       drop: ["مشاهده تیکت ها"],
-      links: ["/admin/Testticket"],
+      links: ["/admin/view-tikets"],
     },
     {
       title: "اطلاعات کاربری",
       drop: [" ویرایش اطلاعات"],
-      links: ["/admin/userInfo"],
+      links: ["/admin/profile"],
     },
   ];
 

@@ -14,7 +14,7 @@ function PanelLayout() {
       </div>
       <div className=" p-2 w-4/5 max-lg:w-full max-h-screen ">
         <Topbar />
-        <div onClick={() => dispatch(menuState(false))} className=" rounded-3xl h-[81vh] overflow-y-auto sc overflow-x-hidden">
+        <div onClick={() => dispatch(menuState(false))} className=" relative rounded-3xl h-[81vh] overflow-y-auto sc overflow-x-hidden">
           <Outlet />
         </div>
       </div>
