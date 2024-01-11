@@ -12,6 +12,7 @@ import { menuState } from "../../redux/menu/menuActions";
 
 export function Topbar() {
   const { userData, logout } = useAuth();
+  console.log(userData)
   const { isOpen } = useSelector((state) => state.menuState);
   const dispatch = useDispatch();
 

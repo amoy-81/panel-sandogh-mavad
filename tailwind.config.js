@@ -37,6 +37,7 @@ export default {
         7: "#3B3B3B",
       },
       backColor : "#0D294E",
+      redColor : '#B9393A',
 
       // default
       transparent: 'transparent',

@@ -33,10 +33,14 @@ import RecordCredit from "./pages/expert/check-request/check-steps/RecordCredit"
 import RecordWage from "./pages/expert/check-request/check-steps/RecordWage";
 import RecordEvidence from "./pages/expert/check-request/check-steps/RecordEvidence";
 import RecordCheck_evidence from "./pages/expert/check-request/check-steps/RecordCheck_evidence";
-import UserViewRequest from "./pages/user/requests/view-request/layout/UserViewRequestLayout";
 import UserViewRequestLayout from "./pages/user/requests/view-request/layout/UserViewRequestLayout";
 import RecordAgreement from "./pages/expert/check-request/check-steps/RecordAgreement";
 import ViewBondRequest from "./pages/user/requests/view-request/ViewBondRequest";
+import FailedRequests from "./pages/expert/failed-requests/FailedRequests";
+import DashboardAdmin from "./pages/admin/dashboard/DashboardAdmin";
+import ViewExperts from "./pages/admin/experts/ViewExperts";
+import AddExpert from "./pages/admin/copy/add-expert/AddExpert";
+import ExpertInformation from "./pages/admin/copy/expert-information/ExpertInformation";
 
 const router = createBrowserRouter([
   // user routes
@@ -154,6 +158,10 @@ const router = createBrowserRouter([
         element: <ExpertCurrentRequests />,
       },
       {
+        path: "failed-requests",
+        element: <FailedRequests />,
+      },
+      {
         path: "notifications",
         element: <Notifications />,
       },
@@ -217,11 +225,31 @@ const router = createBrowserRouter([
   // admin routes
   {
     path: "/admin",
-    element: <PanelLayout />,
+    element: (
+      <PrivateRoutes>
+        <PanelLayout />
+      </PrivateRoutes>
+    ),
     children: [
       {
         path: "dashboard",
-        element: <Dashboard />,
+        element: <DashboardAdmin />,
+      },
+      {
+        path: "failed-requests",
+        element: <FailedRequests />,
+      },
+      {
+        path: "view-experts",
+        element: <ViewExperts />,
+      },
+      {
+        path: "add-expert",
+        element: <AddExpert />,
+      },
+      {
+        path: "expert-information/:id",
+        element: <ExpertInformation />,
       },
     ],
   },

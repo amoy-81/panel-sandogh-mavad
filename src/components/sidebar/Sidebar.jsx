@@ -18,6 +18,43 @@ export function Sidebar({ userRule }) {
   const { userData } = useAuth();
   const { isOpen } = useSelector((state) => state.menuState);
 
+  const adminSidebar = [
+    {
+      title: "خانه",
+      drop: [" خانه"],
+      links: ["/admin/dashboard"],
+    },
+    {
+      title: "کارشناسان",
+      drop: ["لیست کارشناسان", "اضافه کردن کارشناس"],
+      links: ["/admin/view-experts", "/admin/add-expert"],
+    },
+    {
+      title: "کاربران",
+      drop: ["لیست کاربران"],
+      links: ["/admin/viewUsers"],
+    },
+    {
+      title: "درخواست ها",
+      drop: ["لیست درخواست ها", "درخواست های رد شده", "درخواست های حذف"],
+      links: [
+        "/admin/requests",
+        "/admin/isfailedreqs",
+        "/admin/ViewDeleteReqs",
+      ],
+    },
+    {
+      title: "پشتیبانی",
+      drop: ["مشاهده تیکت ها"],
+      links: ["/admin/Testticket"],
+    },
+    {
+      title: "اطلاعات کاربری",
+      drop: [" ویرایش اطلاعات"],
+      links: ["/admin/userInfo"],
+    },
+  ];
+
   const expertSidebar = [
     {
       title: "خانه",
@@ -27,7 +64,7 @@ export function Sidebar({ userRule }) {
     {
       title: "درخواست ها",
       drop: ["درخواست های جاری", "درخواست های رد شده"],
-      links: ["/expert/current-requests", "/expert/dashboard"],
+      links: ["/expert/current-requests", "/expert/failed-requests"],
       icon: SupportIcon,
     },
     {
@@ -118,6 +155,13 @@ export function Sidebar({ userRule }) {
             })}
           {userData?.type === "expert" &&
             expertSidebar.map((item, index) => {
+              if (item.links.length === 1)
+                return <ListItem key={index} {...item} />;
+              if (item.links.length > 1)
+                return <Dropdown key={index} {...item} />;
+            })}
+          {userData?.type === "admin" &&
+            adminSidebar.map((item, index) => {
               if (item.links.length === 1)
                 return <ListItem key={index} {...item} />;
               if (item.links.length > 1)
