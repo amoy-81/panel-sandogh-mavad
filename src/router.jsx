@@ -58,6 +58,12 @@ import Four from "./pages/user/copy/tashilat/steps/Four";
 import Five from "./pages/user/copy/tashilat/steps/Five";
 import Six from "./pages/user/copy/tashilat/steps/Six";
 import Confirm from "./pages/user/copy/tashilat/steps/Confirm";
+import ViewWarrantyDocuments from "./pages/admin/copy/view-warranty-documents/ViewWarrantyDocuments";
+import ViewFacilitiesDocuments from "./pages/admin/copy/view-facilities-documents/ViewFacilitiesDocuments";
+import ViewBondDocuments from "./pages/admin/view-bond-documents/ViewBondDocuments";
+import ExpertViewTikets from "./pages/expert/view-tikets/ExpertViewTikets";
+import ExpertNewTicket from "./pages/expert/new-tiket/ExpertNewTiket";
+import ExpertEditProfile from "./pages/expert/edit-profile/ExpertEditProfile";
 
 const router = createBrowserRouter([
   // user routes
@@ -197,6 +203,35 @@ const router = createBrowserRouter([
         element: <Notifications />,
       },
 
+      {
+        path: "view-warranty-documents/:id",
+        element: <ViewWarrantyDocuments />,
+      },
+      {
+        path: "view-facilities-documents/:id",
+        element: <ViewFacilitiesDocuments />,
+      },
+      {
+        path: "view-bond-documents/:id",
+        element: <ViewBondDocuments />,
+      },
+      {
+        path: "view-tikets",
+        element: <ExpertViewTikets />,
+      },
+      {
+        path: "new-tikets",
+        element: <ExpertNewTicket />,
+      },
+      {
+        path: "support/:tiketId",
+        element: <Support />,
+      },
+      {
+        path: "edit-profile",
+        element: <ExpertEditProfile />,
+      },
+
       // check request
       {
         path: "check-request",
@@ -321,6 +356,18 @@ const router = createBrowserRouter([
       {
         path: "admin-check-request/:id",
         element: <AdminCheckRequest />,
+      },
+      {
+        path: "view-warranty-documents/:id",
+        element: <ViewWarrantyDocuments />,
+      },
+      {
+        path: "view-facilities-documents/:id",
+        element: <ViewFacilitiesDocuments />,
+      },
+      {
+        path: "view-bond-documents/:id",
+        element: <ViewBondDocuments />,
       },
       {
         path: "admin-bond-request/:requestId",

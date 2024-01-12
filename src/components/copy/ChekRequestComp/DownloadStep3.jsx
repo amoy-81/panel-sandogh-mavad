@@ -49,7 +49,7 @@ export default function DownloadStep3({ reqStatus , reqId }) {
             </div>
         )
       }
-      if (reqStatus.report === true) {
+      if (reqStatus?.report === true) {
         return (
             <div className=" m-3 bg-white rounded-xl p-5">
                 <div className=" pb-4">
@@ -77,7 +77,7 @@ export default function DownloadStep3({ reqStatus , reqId }) {
                 </div>
             </div>
         )
-      } else if (reqStatus.assessment === false) {
+      } else if (reqStatus?.assessment === false) {
         return (
             <div className=" m-3 bg-white rounded-xl p-5">
                 <div className=" pb-4">
@@ -93,7 +93,7 @@ export default function DownloadStep3({ reqStatus , reqId }) {
                 </div>
             </div>
         )
-      } else if (reqStatus.assessment === true && reqStatus.report === false && fileStorage.file === null) {
+      } else if (reqStatus?.assessment === true && reqStatus?.report === false && fileStorage.file === null) {
         return (
             <div className="m-3 bg-white rounded-xl p-5">
                 {isLoading && <Loader />}
@@ -111,7 +111,7 @@ export default function DownloadStep3({ reqStatus , reqId }) {
                 
             </div>
         )
-      } else if (reqStatus.assessment === true && reqStatus.report === false && fileStorage.file !== null) {
+      } else if (reqStatus?.assessment === true && reqStatus?.report === false && fileStorage.file !== null) {
         return (
             <div className="m-3 bg-white rounded-xl p-5">
                 <div className=" pb-4">

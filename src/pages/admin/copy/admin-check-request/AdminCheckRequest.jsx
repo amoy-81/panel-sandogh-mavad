@@ -52,8 +52,8 @@ export default function AdminCheckRequest() {
         });
         setReqType(res.data.type);
         console.log(updatePage);
-        if (res.data.type === 'bond') {
-          navigate(`/admin/admin-bond-request/${reqId.id}`)
+        if (res.data.type === "bond") {
+          navigate(`/admin/admin-bond-request/${reqId.id}`);
         }
       })
       .catch((err) => {
@@ -72,8 +72,12 @@ export default function AdminCheckRequest() {
         const queryString2 = queryString.stringify(params);
         const url =
           res.data.type === "facilities"
-            ? `${import.meta.env.VITE_IMAGES_URL}/api/allFacilityExcel?facility_id=${reqId.id}`
-            : `${import.meta.env.VITE_IMAGES_URL}/api/warrantyExcel?${queryString2}`;
+            ? `${
+                import.meta.env.VITE_IMAGES_URL
+              }/api/allFacilityExcel?facility_id=${reqId.id}`
+            : `${
+                import.meta.env.VITE_IMAGES_URL
+              }/api/warrantyExcel?${queryString2}`;
         setExUrl(url);
         console.log(url);
       }
@@ -294,11 +298,11 @@ export default function AdminCheckRequest() {
           <DownloadStep5 reqStatus={reqStatus} reqId={reqId.id} />
 
           <div className="pt-4 px-2">
-            <div className="w-full flex justify-between">
+            <div className="w-full flex gap-2 justify-between">
               {reqStatus.assessment === true && reqStatus.credit === false ? (
                 <button
                   onClick={() => setShowCheckRep(true)}
-                  className="w-[215px]  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs hover:text-white hover:bg-red-700 transition"
+                  className="w-full  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs hover:text-white hover:bg-red-700 transition"
                 >
                   گزارش ناقصی در مدارک{" "}
                 </button>
@@ -307,32 +311,25 @@ export default function AdminCheckRequest() {
               )}
               {reqType && (
                 <Link
-                  to={
-                    reqType === "facilities"
-                      ? `/panel/FacilitiesDocuments/${reqId.id}`
-                      : `/panel/WarrantyDocuments/${reqId.id}`
-                  }
+                  to={`/admin/view-${reqType}-documents/${reqId.id}`}
                   style={{ textAlign: "center" }}
                   className={
                     reqStatus.assessment === true && reqStatus.credit === false
-                      ? "w-[215px] rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs hover:text-white hover:bg-blue-700 transition"
-                      : "w-full rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs"
+                      ? "w-full rounded-lg border border-secondary mt-2 text-secondary p-3 font-bold text-xs hover:text-white hover:bg-secondary transition"
+                      : "w-full rounded-lg border border-secondary mt-2 text-secondary p-3 font-bold text-xs"
                   }
                 >
                   مشاهده مدارک{" "}
                 </Link>
               )}
             </div>
-            <div
-              className="w-full"
-              style={{ display: "flex", justifyContent: "space-between" }}
-            >
+            <div className="w-full flex gap-2">
               {ExUrl !== null && (
-                <a href={ExUrl}>
-                  <button
-                    onClick={() => toast("بارگیری به زودی انجام میشود")}
-                    className="w-[215px] rounded-lg bg-green-700 mt-2   text-white p-3 font-bold text-xs"
-                  >
+                <a
+                  className="w-full rounded-lg bg-green-700 mt-2 text-center text-white p-3 font-bold text-xs"
+                  href={ExUrl}
+                >
+                  <button onClick={() => toast("بارگیری به زودی انجام میشود")}>
                     خروجی اکسل
                   </button>
                 </a>
@@ -340,9 +337,7 @@ export default function AdminCheckRequest() {
               <button
                 onClick={() => navigate(-1)}
                 className={
-                  ExUrl !== null
-                    ? "w-[215px] rounded-lg bg-blue-700 mt-2   text-white p-3 font-bold text-xs"
-                    : "w-full  rounded-lg bg-blue-700 mt-2   text-white p-3 font-bold text-xs"
+                  "w-full  rounded-lg bg-secondary mt-2   text-white p-3 font-bold text-xs"
                 }
               >
                 بازگشت

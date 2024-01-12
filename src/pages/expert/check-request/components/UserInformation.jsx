@@ -1,8 +1,10 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
+import useAuth from "../../../../auth/useAuth";
 
-function UserInformation({ showUserResponse }) {
+function UserInformation({ showUserResponse, requestType, requestId }) {
+  const { userData } = useAuth();
   const navigate = useNavigate();
   return (
     <div className=" w-1/3 max-lg:w-full p-4 bg-white rounded-xl">
@@ -34,7 +36,11 @@ function UserInformation({ showUserResponse }) {
       </div>
       <div className=" w-full flex gap-2 text-center">
         <Link
-          to={`/expert/current-requests`}
+          to={`/${
+            userData.type === "genuine" || userData.type === "legal"
+              ? "user"
+              : userData.type
+          }/view-${requestType}-documents/${requestId}`}
           className=" w-full p-2 border-2 font-semibold border-primary text-primary rounded-lg hover:text-white hover:bg-primary transition"
         >
           مشاهده مدارک

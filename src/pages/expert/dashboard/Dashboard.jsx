@@ -19,7 +19,7 @@ function ExpertDashboard() {
           </div>
         </div>
         <div className="w-1/3 max-lg:w-full h-28 flex justify-between items-center rounded-2xl bg-secondary relative overflow-hidden pr-11">
-          <Link to="/expert/current-requests">مشاهده تیکت ها</Link>
+          <Link to="/expert/view-tikets">مشاهده تیکت ها</Link>
           <div>
             <img className="absolute left-0 inset-y-0" src={Ellipse2} alt="" />
             <img className="absolute left-0 inset-y-0" src={Ellipse1} alt="" />

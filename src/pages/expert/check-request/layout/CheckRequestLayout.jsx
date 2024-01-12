@@ -3,6 +3,7 @@ import useRequests from "../../../../hooks/useRequests";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import UserInformation from "../components/UserInformation";
+import StatusBar from "../../../user/requests/view-request/components/StatusBar";
 
 function CheckRequestLayout({ children }) {
   const { requestId } = useParams();
@@ -101,11 +102,18 @@ function CheckRequestLayout({ children }) {
       <div className=" py-6">
         <p className="text-xl font-extrabold text-backColor">مشاهده درخواست</p>
       </div>
+      <StatusBar requestId={requestId} />
       <div className="flex w-full mt-5">
         <div className="w-2/3 max-lg:w-full p-2 ">
           <Outlet />
         </div>
-        <UserInformation showUserResponse={showUserResponse} />
+        <UserInformation
+          requestType={
+            allStatusResponse?.type ? allStatusResponse?.type : "bond"
+          }
+          requestId={requestId}
+          showUserResponse={showUserResponse}
+        />
       </div>
     </div>
   );

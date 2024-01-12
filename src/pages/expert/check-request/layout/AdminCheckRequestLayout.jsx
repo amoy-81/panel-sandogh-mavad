@@ -65,7 +65,7 @@ function AdminCheckRequestLayout({ children }) {
         <div className="w-2/3 max-lg:w-full p-2 ">
           {children}
         </div>
-        <UserInformation showUserResponse={showUserResponse} />
+        <UserInformation requestId={requestId} requestType={allStatusResponse?.type ?allStatusResponse?.type : 'bond' } showUserResponse={showUserResponse} />
       </div>
     </div>
   );

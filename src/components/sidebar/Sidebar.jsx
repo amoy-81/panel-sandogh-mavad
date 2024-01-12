@@ -70,13 +70,13 @@ export function Sidebar({ userRule }) {
     {
       title: "پشتیبانی",
       drop: ["مشاهده تیکت ها", "ثبت تیکت ها"],
-      links: ["/expert/dashboard", "/expert/dashboard"],
+      links: ["/expert/view-tikets", "/expert/new-tikets"],
       icon: SupportIcon,
     },
     {
       title: "اطلاعات کاربری",
       drop: [" ویرایش اطلاعات"],
-      links: ["/expert/dashboard"],
+      links: ["/expert/edit-profile"],
       icon: UserIcon,
     },
   ];
@@ -90,8 +90,8 @@ export function Sidebar({ userRule }) {
     {
       title: "خدمات",
       drop: [
-        "درخواست ضمانتنامه",
         "درخواست حد اعتباری",
+        "درخواست ضمانتنامه",
         "درخواست تسهیلات",
         "درخواست های جاری",
       ],

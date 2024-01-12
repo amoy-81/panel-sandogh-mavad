@@ -55,7 +55,7 @@ export default function DownloadSecStepFile({ reqStatus , reqId }) {
             </div>
         )
       }
-      if (reqStatus.commite === true) {
+      if (reqStatus?.commite === true) {
         return (
             <div className=" m-3 bg-white rounded-xl p-5">
                 <div className=" pb-4">
@@ -111,7 +111,7 @@ export default function DownloadSecStepFile({ reqStatus , reqId }) {
                     </p>
             </div>
         )
-      } else if (reqStatus.report === false) {
+      } else if (reqStatus?.report === false) {
         return (
             <div className=" m-3 bg-white rounded-xl p-5">
                 <div className=" pb-4">
@@ -127,7 +127,7 @@ export default function DownloadSecStepFile({ reqStatus , reqId }) {
                 </div>
             </div>
         )
-      } else if (reqStatus.report === true && reqStatus.commite === false && fileStorage.file === null) {
+      } else if (reqStatus?.report === true && reqStatus?.commite === false && fileStorage.file === null) {
         return (
             <div className="m-3 bg-white rounded-xl p-5">
                 {isLoading && <Loader />}
@@ -155,7 +155,7 @@ export default function DownloadSecStepFile({ reqStatus , reqId }) {
                 
             </div>
         )
-      } else if (reqStatus.report === true && reqStatus.commite === false && fileStorage.file !== null) {
+      } else if (reqStatus?.report === true && reqStatus?.commite === false && fileStorage.file !== null) {
         return (
             <div className="m-3 bg-white rounded-xl p-5">
                 <div className=" pb-4">

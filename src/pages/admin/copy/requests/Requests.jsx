@@ -138,7 +138,7 @@ const Requests = () => {
                     <div>
                       نوع درخواست:{" "}
                       <a href="">
-                        {item.type === "facilities" ? "تسهیلات" : item.type === "bond" ? 'ضمانت نامه' : "حد اعتباری"}
+                        {item.type === "facilities" ? "تسهیلات" : item.type === "bond" ? 'حد اعتباری' : "ضمانت نامه"}
                       </a>
                     </div>
                     <div>
@@ -252,7 +252,7 @@ const Requests = () => {
                     className="w-1/6 text-center"
                     href=""
                   >
-                    {item.type === "facilities" ? "تسهیلات" : item.type === "bond" ? 'ضمانت نامه' : "حد اعتباری"}
+                    {item.type === "facilities" ? "تسهیلات" : item.type === "bond" ? 'حد اعتباری' : "ضمانت نامه"}
                   </Link>
                   <p className="w-1/6 text-center" href="">
                     {onlyDateConversion(item.created_at)}

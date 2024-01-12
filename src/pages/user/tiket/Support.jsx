@@ -49,7 +49,7 @@ function Support() {
         پشتیبانی - تیکت شماره {`${tiketId}`}
       </div>
       {/* messages */}
-      <div className=" sc h-[55vh] bg-white flex flex-col-reverse rounded-2xl overflow-auto p-4 max-lg:px-0">
+      <div className=" sc h-[55vh] bg-white flex flex-col-reverse rounded-b-2xl overflow-auto p-4 max-lg:px-0">
         {tiketResponse?.message
           .reverse()
           .map((msg, index) =>

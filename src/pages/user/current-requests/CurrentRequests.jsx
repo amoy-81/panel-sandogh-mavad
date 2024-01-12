@@ -65,8 +65,8 @@ function CurrentRequests() {
                       {item.type === "facilities"
                         ? "درخواست تسهیلات"
                         : item.type === "warranty"
-                        ? "درخواست حد اعتباری"
-                        : "درخواست ضمانت"}
+                        ? "درخواست ضمانت"
+                        : "درخواست حد اعتباری"}
                     </p>
                     {item.facilities.length > 0 && (
                       <p className="font-bold text-sm pt-2 ">{`عنوان : ${item.facilities[0].title}`}</p>
