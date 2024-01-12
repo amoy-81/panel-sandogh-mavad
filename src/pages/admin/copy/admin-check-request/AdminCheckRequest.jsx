@@ -52,9 +52,12 @@ export default function AdminCheckRequest() {
         });
         setReqType(res.data.type);
         console.log(updatePage);
+        if (res.data.type === 'bond') {
+          navigate(`/admin/admin-bond-request/${reqId.id}`)
+        }
       })
       .catch((err) => {
-        navigate(`/panel/404`);
+        // navigate(`/panel/404`);
       });
 
     Axios.get(`/v1/request/${reqId.id}`).then(async (res) => {

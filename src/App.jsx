@@ -4,13 +4,16 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import TashilatProvider from "./contexts/Tashilat.Provider";
 
 function App() {
   return (
     <>
       <ToastContainer />
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <TashilatProvider>
+          <RouterProvider router={router} />
+        </TashilatProvider>
       </Provider>
     </>
   );

@@ -49,6 +49,15 @@ import AdminProfile from "./pages/admin/copy/profile/AdminProfile";
 import ViewUserInformation from "./pages/admin/copy/view-user-information/viewUserInformation";
 import ExpertChangePassword from "./pages/admin/copy/expert/ExpertChangePassword";
 import AdminCheckRequest from "./pages/admin/copy/admin-check-request/AdminCheckRequest";
+import AdminCheckRequestLayout from "./pages/expert/check-request/layout/AdminCheckRequestLayout";
+import Tashilat from "./pages/user/copy/tashilat/Tashilat";
+import One from "./pages/user/copy/tashilat/steps/One";
+import Two from "./pages/user/copy/tashilat/steps/Two";
+import Three from "./pages/user/copy/tashilat/steps/Three";
+import Four from "./pages/user/copy/tashilat/steps/Four";
+import Five from "./pages/user/copy/tashilat/steps/Five";
+import Six from "./pages/user/copy/tashilat/steps/Six";
+import Confirm from "./pages/user/copy/tashilat/steps/Confirm";
 
 const router = createBrowserRouter([
   // user routes
@@ -141,8 +150,22 @@ const router = createBrowserRouter([
         element: <UpdateLegalProfile />,
       },
       {
-        path: "record_genuine_legal",
+        path: "record_legal_profile",
         element: <LegalProfile />,
+      },
+
+      {
+        path: "tashilat",
+        element: <Tashilat />,
+        children: [
+          { path: "1", index: true, element: <One /> },
+          { path: "2", element: <Two /> },
+          { path: "3", element: <Three /> },
+          { path: "4", element: <Four /> },
+          { path: "5", element: <Five /> },
+          { path: "6", element: <Six /> },
+          { path: "confirm", element: <Confirm /> },
+        ],
       },
     ],
   },
@@ -298,6 +321,14 @@ const router = createBrowserRouter([
       {
         path: "admin-check-request/:id",
         element: <AdminCheckRequest />,
+      },
+      {
+        path: "admin-bond-request/:requestId",
+        element: (
+          <AdminCheckRequestLayout>
+            <ViewBondRequest />
+          </AdminCheckRequestLayout>
+        ),
       },
     ],
   },

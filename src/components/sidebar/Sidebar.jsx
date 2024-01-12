@@ -98,7 +98,7 @@ export function Sidebar({ userRule }) {
       links: [
         "/user/warranty-docs-upload",
         "/user/credit-limit",
-        "/user/facilities",
+        "/user/tashilat/1",
         "/user/current-requests",
       ],
       icon: SupportIcon,
