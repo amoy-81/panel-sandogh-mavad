@@ -74,7 +74,6 @@ function DefectreportModal({ show, setShow }) {
           </button>
           <button
             disabled={defctReportLoading}
-            type="submit"
             className={
               defctReportLoading
                 ? " w-full p-2 font-semibold text-white bg-g-5 rounded-lg transition"

@@ -64,6 +64,7 @@ import ViewBondDocuments from "./pages/admin/view-bond-documents/ViewBondDocumen
 import ExpertViewTikets from "./pages/expert/view-tikets/ExpertViewTikets";
 import ExpertNewTicket from "./pages/expert/new-tiket/ExpertNewTiket";
 import ExpertEditProfile from "./pages/expert/edit-profile/ExpertEditProfile";
+import CompleteInformationProvider from "./providers/CompleteInformation.provider";
 
 const router = createBrowserRouter([
   // user routes
@@ -83,11 +84,19 @@ const router = createBrowserRouter([
       // requests
       {
         path: "current-requests",
-        element: <CurrentRequests />,
+        element: (
+          <CompleteInformationProvider>
+            <CurrentRequests />
+          </CompleteInformationProvider>
+        ),
       },
       {
         path: "warranty-docs-upload",
-        element: <WarrantyDocsUpload />,
+        element: (
+          <CompleteInformationProvider>
+            <WarrantyDocsUpload />
+          </CompleteInformationProvider>
+        ),
       },
       {
         path: "warranty-complet/:bondId",
@@ -95,7 +104,11 @@ const router = createBrowserRouter([
       },
       {
         path: "credit-limit",
-        element: <CreditLimit />,
+        element: (
+          <CompleteInformationProvider>
+            <CreditLimit />
+          </CompleteInformationProvider>
+        ),
       },
       {
         path: "facilities",
@@ -109,7 +122,11 @@ const router = createBrowserRouter([
         children: [
           {
             path: "bond/:requestId",
-            element: <ViewBondRequest />,
+            element: (
+              <CompleteInformationProvider>
+                <ViewBondRequest />
+              </CompleteInformationProvider>
+            ),
           },
           {
             path: "wf/:requestId",
@@ -164,7 +181,15 @@ const router = createBrowserRouter([
         path: "tashilat",
         element: <Tashilat />,
         children: [
-          { path: "1", index: true, element: <One /> },
+          {
+            path: "1",
+            index: true,
+            element: (
+              <CompleteInformationProvider>
+                <One />
+              </CompleteInformationProvider>
+            ),
+          },
           { path: "2", element: <Two /> },
           { path: "3", element: <Three /> },
           { path: "4", element: <Four /> },

@@ -43,7 +43,6 @@ export default function ExpertReqs({ details, close }) {
                 class="border-transparent text-gray-900 flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium"
                 aria-controls="tabs-1-panel-1"
                 role="tab"
-                type="button"
               >
                 درخواست های جاری
               </button>
@@ -54,7 +53,6 @@ export default function ExpertReqs({ details, close }) {
                 class="border-transparent text-gray-900 flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium"
                 aria-controls="tabs-1-panel-2"
                 role="tab"
-                type="button"
               >
                 درخواست ها
               </button>

@@ -8,7 +8,6 @@ function GuidDropdown({title , body}) {
       <h2>
         <button
             onClick={() => setIsOpen(prev => !prev)}
-          type="button"
           className="flex z-40 items-center justify-between w-full p-5 font-medium text-left text-titlesColor hover:bg-p-2 rounded-t-xl"
         >
           <span>{title}</span>

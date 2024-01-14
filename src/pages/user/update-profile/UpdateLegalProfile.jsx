@@ -177,10 +177,7 @@ function UpdateLegalProfile() {
             />
           </div>
         </div>
-        <button
-          type="submit"
-          className=" max-lg:w-full text-white py-4 px-6 mt-5 bg-secondary transition hover:bg-s-6 rounded-2xl"
-        >
+        <button className=" max-lg:w-full text-white py-4 px-6 mt-5 bg-secondary transition hover:bg-s-6 rounded-2xl">
           ثبت اطلاعات
         </button>
       </form>

@@ -89,14 +89,12 @@ function NewTicket() {
       <div className=" flex gap-2">
         <button
           onClick={() => setShowCurrentRequests(true)}
-          type="button"
           className="inline-flex items-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           {selectedReq ? "تغییر درخواست" : "انتخاب درخواست"}
         </button>
         {selectedReq && (
           <button
-            type="button"
             className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-gray-300 hover:bg-gray-50"
           >
             شناسه درخواست : {selectedReq.shenaseh}
@@ -191,8 +189,7 @@ function NewTicket() {
       </div>
       <button
         disabled={newTicketLoading}
-        type="submit"
-        className={
+         className={
           newTicketLoading
             ? "p-3 w-full bg-g-6 rounded-xl text-white my-3"
             : "p-3 w-full bg-primary rounded-xl text-white my-3"
