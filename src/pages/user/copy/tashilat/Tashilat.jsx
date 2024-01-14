@@ -58,7 +58,7 @@ export default function Tashilat() {
       </div>
       <div className=" flex  items-center w-full justify-center">
         <div className="flex items-center">
-          <p className="bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 ">
+          <p className="bg-s-2 p-0.5 pt-1 px-3 rounded-xl text-secondary ">
             1
           </p>
         </div>
@@ -66,7 +66,7 @@ export default function Tashilat() {
           <div
             className={
               stepLevel > 1 || stepLevel === "confirm"
-                ? "border-t border-2 border-blue-800 h-full rounded"
+                ? "border-t border-2 border-secondary h-full rounded"
                 : "border-t border-2 border-slate-300 h-full rounded"
             }
           ></div>
@@ -75,8 +75,8 @@ export default function Tashilat() {
           <p
             className={
               stepLevel >= 2 || stepLevel === "confirm"
-                ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
-                : "bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
+                ? "bg-s-2 p-0.5 pt-1 px-3 rounded-xl text-secondary "
+                : "bg-g-1 p-0.5 pt-1 px-3 rounded-xl text-secondary "
             }
           >
             2
@@ -86,7 +86,7 @@ export default function Tashilat() {
           <div
             className={
               stepLevel > 2 || stepLevel === "confirm"
-                ? "border-t border-2 border-blue-800 h-full rounded"
+                ? "border-t border-2 border-secondary h-full rounded"
                 : "border-t border-2 border-slate-300 h-full rounded"
             }
           ></div>
@@ -95,8 +95,8 @@ export default function Tashilat() {
           <p
             className={
               stepLevel >= 3 || stepLevel === "confirm"
-                ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
-                : "bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
+                ? "bg-s-2 p-0.5 pt-1 px-3 rounded-xl text-secondary "
+                : "bg-g-1 p-0.5 pt-1 px-3 rounded-xl text-secondary "
             }
           >
             3
@@ -106,7 +106,7 @@ export default function Tashilat() {
           <div
             className={
               stepLevel > 3 || stepLevel === "confirm"
-                ? "border-t border-2 border-blue-800 h-full rounded"
+                ? "border-t border-2 border-secondary h-full rounded"
                 : "border-t border-2 border-slate-300 h-full rounded"
             }
           ></div>
@@ -115,8 +115,8 @@ export default function Tashilat() {
           <p
             className={
               stepLevel >= 4 || stepLevel === "confirm"
-                ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
-                : "bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
+                ? "bg-s-2 p-0.5 pt-1 px-3 rounded-xl text-secondary "
+                : "bg-g-1 p-0.5 pt-1 px-3 rounded-xl text-secondary "
             }
           >
             4
@@ -126,7 +126,7 @@ export default function Tashilat() {
           <div
             className={
               stepLevel > 4 || stepLevel === "confirm"
-                ? "border-t border-2 border-blue-800 h-full rounded"
+                ? "border-t border-2 border-secondary h-full rounded"
                 : "border-t border-2 border-slate-300 h-full rounded"
             }
           ></div>
@@ -135,8 +135,8 @@ export default function Tashilat() {
           <p
             className={
               stepLevel >= 5 || stepLevel === "confirm"
-                ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
-                : "bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
+                ? "bg-s-2 p-0.5 pt-1 px-3 rounded-xl text-secondary "
+                : "bg-g-1 p-0.5 pt-1 px-3 rounded-xl text-secondary "
             }
           >
             5
@@ -146,7 +146,7 @@ export default function Tashilat() {
           <div
             className={
               stepLevel > 5 || stepLevel === "confirm"
-                ? "border-t border-2 border-blue-800 h-full rounded"
+                ? "border-t border-2 border-secondary h-full rounded"
                 : "border-t border-2 border-slate-300 h-full rounded"
             }
           ></div>
@@ -155,8 +155,8 @@ export default function Tashilat() {
           <p
             className={
               stepLevel >= 6 || stepLevel === "confirm"
-                ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
-                : "bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
+                ? "bg-s-2 p-0.5 pt-1 px-3 rounded-xl text-secondary "
+                : "bg-g-1 p-0.5 pt-1 px-3 rounded-xl text-secondary "
             }
           >
             6
@@ -166,7 +166,7 @@ export default function Tashilat() {
           <div
             className={
               stepLevel === "confirm"
-                ? "border-t border-2 border-blue-800 h-full rounded"
+                ? "border-t border-2 border-secondary h-full rounded"
                 : "border-t border-2 border-slate-300 h-full rounded"
             }
           ></div>
@@ -175,8 +175,8 @@ export default function Tashilat() {
           <p
             className={
               stepLevel === "confirm"
-                ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
-                : "bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "
+                ? "bg-s-2 p-0.5 pt-1 px-3 rounded-xl text-secondary "
+                : "bg-g-1 p-0.5 pt-1 px-3 rounded-xl text-secondary "
             }
           >
             تایید

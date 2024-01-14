@@ -66,7 +66,10 @@ export function Topbar() {
           {userData?.name} {userData?.family} گرامی
         </h1>
         <div className=" flex gap-10">
-          <button onClick={() => setShowNotif(true)} className=" flex items-center max-lg:hidden ">
+          <button
+            onClick={() => setShowNotif(true)}
+            className=" flex items-center max-lg:hidden "
+          >
             <img
               className=" pl-2"
               src={
@@ -100,7 +103,7 @@ export function Topbar() {
 
       {/* menu */}
       <Modal isOpen={showMenu} close={setShowMenu}>
-        <div className="text-center bg-c-2 rounded-lg py-3">
+        <div className="text-center rounded-lg py-3">
           <img
             src={
               showUserResponse?.profilegenuine?.image
@@ -121,13 +124,30 @@ export function Topbar() {
               : "فاقد پست الکترونیکی"}
           </a>
         </div>
-        <div className=" flex w-full gap-4 text-center mb-5 max-md:flex-col" onClick={() => setShowMenu(false)}>
-          <Link to={`/${userData?.type === 'genuine' || userData?.type === 'legal' ? 'user' : userData?.type}/notifications`} className=" cursor-pointer w-1/3 max-md:w-full py-2 px-4 bg-p-5 hover:bg-primary transition text-white rounded-2xl">
+        <div
+          className=" flex w-full gap-4 text-center mb-5 max-md:flex-col"
+          onClick={() => setShowMenu(false)}
+        >
+          <Link
+            to={`/${
+              userData.type === "genuine" || userData.type === "legal"
+                ? "user"
+                : userData.type
+            }/dashboard`}
+            className=" cursor-pointer w-1/3 max-md:w-full py-2 px-4 bg-p-5 hover:bg-primary transition text-white rounded-2xl"
+          >
+            داشبورد
+          </Link>
+          <Link
+            to={`/${
+              userData?.type === "genuine" || userData?.type === "legal"
+                ? "user"
+                : userData?.type
+            }/notifications`}
+            className=" cursor-pointer w-1/3 max-md:w-full py-2 px-4 bg-p-5 hover:bg-primary transition text-white rounded-2xl"
+          >
             اعلانات
           </Link>
-          <h2 className=" cursor-pointer w-1/3 max-md:w-full py-2 px-4 bg-p-5 hover:bg-primary transition text-white rounded-2xl">
-            اطلاعات کاربری
-          </h2>
           <h2
             onClick={logout}
             className=" cursor-pointer w-1/3 max-md:w-full py-2 px-4 bg-p-5 hover:bg-primary transition text-white rounded-2xl"
@@ -148,20 +168,21 @@ export function Topbar() {
               </tr>
             </thead>
           </table>
-            <hr className="w-full my-2 border border-dashed border-g-2" />
+          <hr className="w-full my-2 border border-dashed border-g-2" />
           <table className=" w-full text-right p-5">
             <tbody>
-              {unreadNotifRes && unreadNotifRes.map((notif, index) => (
-                <tr key={index} className=" text-s-6">
-                  <th className=" w-1/3 py-2">{notif.data.sender}</th>
-                  <th className=" w-2/3 py-2">{notif.data.message}</th>
-                </tr>
-              ))}
+              {unreadNotifRes &&
+                unreadNotifRes.map((notif, index) => (
+                  <tr key={index} className=" text-s-6">
+                    <th className=" w-1/3 py-2">{notif.data.sender}</th>
+                    <th className=" w-2/3 py-2">{notif.data.message}</th>
+                  </tr>
+                ))}
             </tbody>
           </table>
-          {
-            unreadNotifRes?.length === 0 && <p className=" text-g-5 text-center py-4">اعلان جدیدی وجود ندارد</p>
-          }
+          {unreadNotifRes?.length === 0 && (
+            <p className=" text-g-5 text-center py-4">اعلان جدیدی وجود ندارد</p>
+          )}
         </div>
       </Modal>
     </>

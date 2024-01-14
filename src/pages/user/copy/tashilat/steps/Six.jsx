@@ -52,29 +52,32 @@ export default function Six() {
     bills: null,
   });
 
+  console.log(document);
   useEffect(() => {
     if (subResponse) {
       setIsLoading(false);
-      toast.success('اطلاعات ثبت شد')
+      toast.success("اطلاعات ثبت شد");
       setShowNavigate(true);
       navigate(`/user/tashilat/confirm?last_id=${parseInt(values.last_id)}`);
     }
   }, [subResponse]);
 
   useEffect(() => {
-    if (subError) {
+    if (subError || subErrorResponse) {
       toast("خطا در ارسال درخواست");
       setIsLoading(false);
 
-      if (typeof err.response.data.message === "string") {
-        toast(err.response.data.message);
-      } else {
-        Object.keys(err.response.data.message).map((item) => {
-          toast(err.response.data.message[item][0]);
+      if (typeof subError?.message === "string") {
+        toast(subError?.message);
+      }
+      console.log(subError)
+      if (subErrorResponse?.errors && typeof subErrorResponse?.errors === "object") {
+        Object.keys(subErrorResponse.errors).map((item) => {
+          toast(subErrorResponse.errors[item][0]);
         });
       }
     }
-  }, [subError]);
+  }, [subError , subErrorResponse]);
 
   useEffect(() => {
     setErrors(Validation(document, "upDoc"));

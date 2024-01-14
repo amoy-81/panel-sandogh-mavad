@@ -28,7 +28,7 @@ function ViewRequest() {
       <div className=" w-full flex justify-center">
         <div className=" w-2/3 flex flex-col gap-2 p-4">
           <h1 className=" p-2 font-extrabold">فایل گزارش</h1>
-          <p className=" p-2 text-g-6">
+          <p className=" p-2 text-g-6 text-sm text-center">
             فایل های مراحله درخواست در این قسمت بارگذاری می شود
           </p>
           {/* null */}
