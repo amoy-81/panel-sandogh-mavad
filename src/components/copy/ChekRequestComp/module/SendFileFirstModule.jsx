@@ -32,7 +32,7 @@ export default function SendFileFirstModule({ close , reqId , setUpdatePage }) {
             setErr(false)
             setIsLoading(true)
             setStepSendReq(true)
-            axios.post(`/api/admin/evaluation_report/${reqId}`, formData, {
+            axios.post(`/admin/evaluation_report/${reqId}`, formData, {
               headers: {
                 "Content-Type": "multipart/form-data",
                 ...(isLoggedIn && {

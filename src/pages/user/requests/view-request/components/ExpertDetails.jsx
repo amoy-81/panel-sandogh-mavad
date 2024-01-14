@@ -13,8 +13,18 @@ function ExpertDetails({ requestId }) {
     url: `/v1/get_expert/${requestId}`,
   });
 
+  const {
+    response: statusResponse,
+    error: statusError,
+    loading: statusLoading,
+    getRequest: getStatus,
+  } = useRequests({
+    url: `/v1/get_all_status/${requestId}`,
+  });
+
   useEffect(() => {
     getExpert();
+    getStatus()
   }, []);
 
   return (
@@ -47,12 +57,12 @@ function ExpertDetails({ requestId }) {
         )}
       </div>
       <div className=" w-full flex gap-2 text-center">
-        <Link
-          to={`/user/current-requests`}
+        {statusResponse?.type && <Link
+          to={`/user/update-${statusResponse.type}-docs/${requestId}`}
           className=" w-full p-2 border-2 font-semibold border-primary text-primary rounded-lg hover:text-white hover:bg-primary transition"
         >
           مشاهده مدارک
-        </Link>
+        </Link>}
         <Link
           to={`/user/current-requests`}
           className=" w-full p-2 border-2 font-semibold border-secondary text-secondary rounded-lg hover:text-white hover:bg-secondary transition"

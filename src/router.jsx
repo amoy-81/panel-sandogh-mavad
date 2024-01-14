@@ -65,6 +65,8 @@ import ExpertViewTikets from "./pages/expert/view-tikets/ExpertViewTikets";
 import ExpertNewTicket from "./pages/expert/new-tiket/ExpertNewTiket";
 import ExpertEditProfile from "./pages/expert/edit-profile/ExpertEditProfile";
 import CompleteInformationProvider from "./providers/CompleteInformation.provider";
+import UpdateWarrantyDocs from "./pages/user/copy/update-warranty-docs/UpdateWarrantyDocs";
+import UpdateFacilitiesDocs from "./pages/user/copy/update-facilities-docs/UpdateFacilitiesDocs";
 
 const router = createBrowserRouter([
   // user routes
@@ -175,6 +177,16 @@ const router = createBrowserRouter([
       {
         path: "record_legal_profile",
         element: <LegalProfile />,
+      },
+
+      {
+        path: "update-warranty-docs/:id",
+        element: <UpdateWarrantyDocs />,
+      },
+
+      {
+        path: "update-facilities-docs/:id",
+        element: <UpdateFacilitiesDocs />,
       },
 
       {

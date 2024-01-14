@@ -23,7 +23,7 @@ export default function SendEvaluationReportFile({ reqStatus , reqId , setUpdate
     useEffect(() => {
         setRendering(true)
         // get step 3
-        Axios.get(`/api/admin/credit/${reqId}`).then(async (res) => {
+        Axios.get(`/admin/credit/${reqId}`).then(async (res) => {
             console.log("res");
             console.log(res);
             setFileStorage({
@@ -57,7 +57,7 @@ export default function SendEvaluationReportFile({ reqStatus , reqId , setUpdate
             setErr(false)
             setIsLoading(true)
             setStepSendReq(true)
-            axios.post("/api/admin/credit", formData, {
+            axios.post("/admin/credit", formData, {
               headers: {
                 "Content-Type": "multipart/form-data",
                 ...(isLoggedIn && {

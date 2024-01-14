@@ -32,7 +32,7 @@ export default function SendFileSecModule({ showName , close , reqId , setUpdate
             setErr(false)
             setIsLoading(true)
             setStepSendReq(true)
-            axios.post(`/api/admin/committee/${reqId}`, formData, {
+            axios.post(`/admin/committee/${reqId}`, formData, {
               headers: {
                 "Content-Type": "multipart/form-data",
                 ...(isLoggedIn && {

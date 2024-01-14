@@ -29,7 +29,7 @@ export default function SendFileSec({ reqStatus , reqId , setUpdatePage }) {
     useEffect(() => {
         setRendering(true)
         // get step 4
-        Axios.get(`/api/admin/get_committee_for_admin/${reqId}`).then(async (res) => {
+        Axios.get(`/admin/get_committee_for_admin/${reqId}`).then(async (res) => {
             console.log(res);
             setFileStorage({
                 file1 : res.data.file_name1,
@@ -68,7 +68,7 @@ export default function SendFileSec({ reqStatus , reqId , setUpdatePage }) {
             setErr(false)
             setIsLoading(true)
             setStepSendReq(true)
-            axios.post("/api/admin/committee", formData, {
+            axios.post("/admin/committee", formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
                 ...(isLoggedIn && {

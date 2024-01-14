@@ -22,7 +22,7 @@ export default function DownloadBoxRUp({document , setDocment , file_name , path
         <div className='mt-2'>
           {
             document[file_name] === undefined ?
-              <label htmlFor={file_name} className="text-yellow-400 text-xs w-full justify-center">
+              <label htmlFor={file_name} className="text-yellow-500 text-xs w-full justify-center">
                 برای بروزرسانی کلیک کنید
               </label> :
               <div>

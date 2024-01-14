@@ -26,7 +26,7 @@ export default function SendFileFirst({ reqStatus , reqId , setUpdatePage }) {
     useEffect(() => {
         setRendering(true)
         // get step 3
-        Axios.get(`/api/admin/get_report_for_admin/${reqId}`).then(async (res) => {
+        Axios.get(`/admin/get_report_for_admin/${reqId}`).then(async (res) => {
             console.log(res);
             setFileStorage({
                 file : res.data.file_name
@@ -59,7 +59,7 @@ export default function SendFileFirst({ reqStatus , reqId , setUpdatePage }) {
             setErr(false)
             setIsLoading(true)
             setStepSendReq(true)
-            axios.post("/api/admin/evaluation_report", formData, {
+            axios.post("/admin/evaluation_report", formData, {
               headers: {
                 "Content-Type": "multipart/form-data",
                 ...(isLoggedIn && {
