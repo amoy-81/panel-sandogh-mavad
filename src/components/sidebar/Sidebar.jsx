@@ -63,8 +63,12 @@ export function Sidebar({ userRule }) {
     },
     {
       title: "درخواست ها",
-      drop: ["درخواست های جاری", "درخواست های رد شده"],
-      links: ["/expert/current-requests", "/expert/failed-requests"],
+      drop: ["درخواست های جاری", "همه ی درخواست ها", "درخواست های رد شده"],
+      links: [
+        "/expert/current-requests",
+        "/expert/all-requests",
+        "/expert/failed-requests",
+      ],
       icon: SupportIcon,
     },
     {

@@ -4,28 +4,18 @@ import useRequests from "../../../hooks/useRequests";
 import { useEffect } from "react";
 import { onlyDateConversion } from "../../../helper/dateConversion";
 import useAuth from "../../../auth/useAuth";
-import requestStatusConvert from "../../../helper/requestStatusConvert";
 
-function ExpertCurrentRequests() {
+function ExpertAllRequests() {
   const { userData } = useAuth();
   const {
     response: currentRequestsRes,
     error: currentRequestsErr,
     loading: currentRequestsLoading,
     getRequest: getCurrentRequests,
-  } = useRequests({ url: `/admin/get_current_requests/${userData.id}` });
-
-  const {
-    response: allRes,
-    error: AllRequestsErr,
-    loading: AllRequestsLoading,
-    getRequest: getAllRequests,
   } = useRequests({ url: `/admin/get_request_with_expert/${userData.id}` });
-  
-  
+
   useEffect(() => {
     getCurrentRequests();
-    getAllRequests()
   }, []);
 
   return (
@@ -33,7 +23,7 @@ function ExpertCurrentRequests() {
       <div className=" py-6">
         <p className="text-xl font-extrabold text-backColor">
           {" "}
-          درخواست های جاری
+          همه ی درخواست ها
         </p>
       </div>
       <div className=" relative flex flex-wrap ">
@@ -84,4 +74,4 @@ function ExpertCurrentRequests() {
   );
 }
 
-export default ExpertCurrentRequests;
+export default ExpertAllRequests;

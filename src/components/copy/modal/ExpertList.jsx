@@ -21,9 +21,9 @@ export default function ExpertList({ close, reqId, setUpdatePage, type }) {
         <div>لیست کارشناسان</div>
         <button
           onClick={() => close(null)}
-          className="text-c-9 border border-c-9 rounded w-c-4 h-c-4 flex justify-center items-center"
+          className="text-red-500 border p-1 border-c-9 rounded flex justify-center items-center"
         >
-          <img className="" src={imgg} alt="" />
+          <img className=" w-2 h-2" src={imgg} alt="" />
         </button>
       </div>
       {isLoading && <Loader />}

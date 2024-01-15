@@ -39,7 +39,9 @@ function StatusBar({ requestId }) {
       <div className="flex items-center">
         <p
           className={
-            statusResponse?.check
+            statusResponse?.check ||
+            statusResponse?.assessment ||
+            statusResponse?.wage
               ? "bg-s-2 p-0.5 pt-1 px-3 rounded-xl  text-secondary "
               : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "
           }
@@ -48,7 +50,9 @@ function StatusBar({ requestId }) {
         </p>
         <p
           className={
-            statusResponse?.check
+            statusResponse?.check ||
+            statusResponse?.assessment ||
+            statusResponse?.wage
               ? " text-secondary font-bold mx-2 text-sm"
               : "text-gray-300 font-bold mx-2 text-sm"
           }
@@ -147,7 +151,9 @@ function StatusBar({ requestId }) {
       <div className="w-10 px-2">
         <div
           className={
-            statusResponse?.committee || statusResponse?.agreement
+            statusResponse?.committee ||
+            statusResponse?.agreement ||
+            statusResponse?.credit
               ? "border-t border-2  border-secondary h-full rounded"
               : "border-t border-2 border-gray-300 h-full rounded"
           }
@@ -156,7 +162,9 @@ function StatusBar({ requestId }) {
       <div className="flex items-center">
         <p
           className={
-            statusResponse?.committee || statusResponse?.agreement
+            statusResponse?.committee ||
+            statusResponse?.agreement ||
+            statusResponse?.credit
               ? "bg-s-2 p-0.5 pt-1 px-3 rounded-xl  text-secondary "
               : "bg-gray-300 p-0.5 pt-1 px-3 rounded-xl text-gray-400 "
           }
@@ -165,7 +173,9 @@ function StatusBar({ requestId }) {
         </p>
         <p
           className={
-            statusResponse?.committee || statusResponse?.agreement
+            statusResponse?.committee ||
+            statusResponse?.agreement ||
+            statusResponse?.credit
               ? " text-secondary font-bold mx-2 text-sm"
               : "text-gray-300 font-bold mx-2 text-sm"
           }

@@ -187,7 +187,6 @@ const Requests = () => {
                     )}
                     <div className="flex ">
                       <button
-                        href=""
                         className="p-2 m-1 rounded-xl border border-c-7 text-c-9 hover:text-white hover:bg-redColor transition"
                         onClick={() =>
                           setShowExpertList({ id: item.id, type: "change" })
@@ -268,9 +267,9 @@ const Requests = () => {
                   {item.expert_assignment !== null ? (
                     <button
                       onClick={() => detailsHandler(item.id)}
-                      className=" text-center border border-c-7 rounded-xl flex gap-2"
+                      className=" text-center border border-c-7 rounded-xl flex gap-2 p-2"
                     >
-                      <div className="flex justify-center items-center gap-2 p-2 rounded-xl border border-c-7">
+                      <div className="flex justify-center items-center gap-2 rounded-xl ">
                         <div className="text-c-5">مدیریت</div>
                         <div>
                           <img className="w-1.5 h-c-12" src={VectorAZ} alt="" />
@@ -282,9 +281,9 @@ const Requests = () => {
                       onClick={() =>
                         setShowExpertList({ id: item.id, type: "assign" })
                       }
-                      className=" text-center border border-c-9 rounded-xl flex gap-2"
+                      className=" text-center border border-c-9 rounded-xl flex gap-2 p-2"
                     >
-                      <div className="flex justify-center items-center gap-2 p-2 rounded-xl border border-c-7">
+                      <div className="flex justify-center items-center gap-2 rounded-xl">
                         <div className="border-c-7 text-c-9">مدیریت</div>
                         <div>
                           <img className="w-1.5 h-c-0" src={x} alt="" />

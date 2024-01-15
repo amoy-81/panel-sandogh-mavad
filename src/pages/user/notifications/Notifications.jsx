@@ -4,9 +4,11 @@ import { onlyDateConversion } from "../../../helper/dateConversion";
 import Loader from "../../../components/loader/Loader";
 import { Link } from "react-router-dom";
 import useNavigateTypeLinkCreator from "../../../hooks/useNavigateTypeLinkCreator";
+import useAuth from "../../../auth/useAuth";
 
 function Notifications() {
   const userType = useNavigateTypeLinkCreator();
+  const { userData } = useAuth();
   // all notif api
   const {
     response: allNotifRes,
@@ -74,7 +76,7 @@ function Notifications() {
                     </td>
                     <td className="p-4  text-xs text-gray-400 font-bold">
                       <Link
-                        to={`${userType}/view-request/${notif.data.request_id}`}
+                        to={`/redirect-request/${notif.data.request_id}`}
                         className=" text-white bg-secondary rounded p-2"
                       >
                         مشاهده
@@ -104,7 +106,7 @@ function Notifications() {
                     </td>
                     <td className="p-4  text-xs text-gray-400 font-bold">
                       <Link
-                        to={`${userType}/view-request/${notif.data.request_id}`}
+                        to={`/redirect-request/${notif.data.request_id}`}
                         className=" text-white bg-secondary rounded p-2"
                       >
                         مشاهده

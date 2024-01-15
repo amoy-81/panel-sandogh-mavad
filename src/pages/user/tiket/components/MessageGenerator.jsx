@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdOutlineAttachment } from "react-icons/md";
 import { LiaRocketchat } from "react-icons/lia";
 
-function MessageGenerator({ send }) {
+function MessageGenerator({ send, res }) {
   const [paylod, setPayload] = useState({
     body: "",
     file: null,
@@ -15,6 +15,12 @@ function MessageGenerator({ send }) {
     }
   };
 
+  useEffect(() => {
+    setPayload({
+      body: "",
+      file: null,
+    });
+  }, [res]);
   return (
     <>
       <div className=" w-full py-2">
@@ -37,7 +43,7 @@ function MessageGenerator({ send }) {
             onChange={(e) =>
               setPayload((prev) => ({ ...prev, body: e.target.value }))
             }
-            className="  w-full outline-none"
+            className="  w-full outline-none p-0"
           />
           <label htmlFor="tiketFile">
             <MdOutlineAttachment className=" text-3xl text-g-6 cursor-pointer" />

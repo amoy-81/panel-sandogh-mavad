@@ -67,9 +67,16 @@ import ExpertEditProfile from "./pages/expert/edit-profile/ExpertEditProfile";
 import CompleteInformationProvider from "./providers/CompleteInformation.provider";
 import UpdateWarrantyDocs from "./pages/user/copy/update-warranty-docs/UpdateWarrantyDocs";
 import UpdateFacilitiesDocs from "./pages/user/copy/update-facilities-docs/UpdateFacilitiesDocs";
+import RedirectRequest from "./pages/redirect-request/RedirectRequest";
+import ExpertAllRequests from "./pages/expert/all-requests/AllRequests";
+import ExpertSupport from "./pages/expert/new-tiket/ExpertSupport";
 
 const router = createBrowserRouter([
   // user routes
+  {
+    path: "/redirect-request/:requestId",
+    element: <RedirectRequest />,
+  },
   {
     path: "/user",
     element: (
@@ -232,6 +239,10 @@ const router = createBrowserRouter([
         element: <ExpertCurrentRequests />,
       },
       {
+        path: "all-requests",
+        element: <ExpertAllRequests />,
+      },
+      {
         path: "failed-requests",
         element: <FailedRequests />,
       },
@@ -262,7 +273,7 @@ const router = createBrowserRouter([
       },
       {
         path: "support/:tiketId",
-        element: <Support />,
+        element: <ExpertSupport />,
       },
       {
         path: "edit-profile",
@@ -413,6 +424,10 @@ const router = createBrowserRouter([
             <ViewBondRequest />
           </AdminCheckRequestLayout>
         ),
+      },
+      {
+        path: "notifications",
+        element: <Notifications />,
       },
     ],
   },
