@@ -39,8 +39,8 @@ function Login() {
           "token",
           JSON.stringify(response.data.authorisation.token)
         );
-        dispatch(userLoginSuccess(response.data.user));
         setIsLoading(false);
+        dispatch(userLoginSuccess(response.data.user));
         navigate(
           `/${
             response.data.user.type === "genuine" ||

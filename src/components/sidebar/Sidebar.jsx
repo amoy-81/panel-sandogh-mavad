@@ -49,9 +49,9 @@ export function Sidebar({ userRule }) {
       links: ["/admin/view-tikets"],
     },
     {
-      title: "اطلاعات کاربری",
-      drop: [" ویرایش اطلاعات"],
-      links: ["/admin/profile"],
+      title: "نمایه",
+      drop: ["اطلاعات کاربری", "تغییر گذرواژه"],
+      links: ["/admin/profile", "/admin/change-password"],
     },
   ];
 
@@ -78,9 +78,9 @@ export function Sidebar({ userRule }) {
       icon: SupportIcon,
     },
     {
-      title: "اطلاعات کاربری",
-      drop: [" ویرایش اطلاعات"],
-      links: ["/expert/edit-profile"],
+      title: "نمایه",
+      drop: ["اطلاعات کاربری", "تغییر گذرواژه"],
+      links: ["/expert/edit-profile", "/expert/change-password"],
       icon: UserIcon,
     },
   ];
@@ -119,13 +119,15 @@ export function Sidebar({ userRule }) {
       icon: UserIcon,
     },
     {
-      title: "اطلاعات کاربری",
+      title: "نمایه",
+      drop: ["اطلاعات کاربری", "تغییر گذرواژه"],
       links: [
         `/user/${
           userData?.type === "genuine"
             ? "update_genuine_profile"
             : "update_legal_profile"
         }`,
+        "/user/change-password",
       ],
       icon: UserIcon,
     },

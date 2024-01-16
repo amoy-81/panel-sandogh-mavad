@@ -70,14 +70,18 @@ function NewTicket() {
 
   //   handler functions
   const onSubmit = (values) => {
-    const ticketValues = {
-      ...values,
-      file,
-      category,
-      priority: "normal",
-      request_id: selectedReq ? selectedReq.id : null,
-    };
-    sendNewTicket(ticketValues);
+    if (selectedReq) {
+      const ticketValues = {
+        ...values,
+        file,
+        category,
+        priority: "normal",
+        request_id: selectedReq ? selectedReq.id : null,
+      };
+      sendNewTicket(ticketValues);
+    } else {
+      toast.error('لطفا یک درخواست انتخاب کنید')
+    }
   };
 
   return (
@@ -94,9 +98,7 @@ function NewTicket() {
           {selectedReq ? "تغییر درخواست" : "انتخاب درخواست"}
         </button>
         {selectedReq && (
-          <button
-            className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-gray-300 hover:bg-gray-50"
-          >
+          <button className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-gray-300 hover:bg-gray-50">
             شناسه درخواست : {selectedReq.shenaseh}
           </button>
         )}
@@ -189,7 +191,7 @@ function NewTicket() {
       </div>
       <button
         disabled={newTicketLoading}
-         className={
+        className={
           newTicketLoading
             ? "p-3 w-full bg-g-6 rounded-xl text-white my-3"
             : "p-3 w-full bg-primary rounded-xl text-white my-3"

@@ -70,6 +70,8 @@ import UpdateFacilitiesDocs from "./pages/user/copy/update-facilities-docs/Updat
 import RedirectRequest from "./pages/redirect-request/RedirectRequest";
 import ExpertAllRequests from "./pages/expert/all-requests/AllRequests";
 import ExpertSupport from "./pages/expert/new-tiket/ExpertSupport";
+import RegisterRoutes from "./auth/RegisterRoutes";
+import ChangePassword from "./pages/register/ChangePassword";
 
 const router = createBrowserRouter([
   // user routes
@@ -85,6 +87,10 @@ const router = createBrowserRouter([
       </PrivateRoutes>
     ),
     children: [
+      {
+        path: "change-password",
+        element: <ChangePassword />,
+      },
       {
         path: "dashboard",
         element: <Dashboard />,
@@ -155,7 +161,7 @@ const router = createBrowserRouter([
       },
       {
         path: "support/:tiketId",
-        element: <Support />,
+        element: <ExpertSupport />,
       },
       {
         path: "notifications",
@@ -233,6 +239,10 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <ExpertDashboard />,
+      },
+      {
+        path: "change-password",
+        element: <ChangePassword />,
       },
       {
         path: "current-requests",
@@ -350,6 +360,10 @@ const router = createBrowserRouter([
         element: <DashboardAdmin />,
       },
       {
+        path: "change-password",
+        element: <ChangePassword />,
+      },
+      {
         path: "failed-requests",
         element: <FailedRequests />,
       },
@@ -387,7 +401,7 @@ const router = createBrowserRouter([
       },
       {
         path: "support/:tiketId",
-        element: <Support />,
+        element: <ExpertSupport />,
       },
       {
         path: "profile",

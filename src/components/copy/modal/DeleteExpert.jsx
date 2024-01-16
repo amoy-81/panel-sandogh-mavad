@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import useRequests from "../../../hooks/useRequests";
 import Loader from "../../loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 export default function DeleteExpert({ expertData, close }) {
+  const navigate = useNavigate();
   const {
     response: deleteExpertRes,
     error: deleteExpertErr,
@@ -11,10 +13,11 @@ export default function DeleteExpert({ expertData, close }) {
   } = useRequests({ url: `/admin/expert/${expertData.id}` });
 
   useEffect(() => {
-    if (deleteExpertRes) {
-      close(false);
+    if (deleteExpertRes !== null) {
+      close(null);
+      navigate("/admin/dashboard");
     }
-  }, []);
+  }, [deleteExpertRes]);
 
   const confirmHandler = () => {
     deleteExpert();
