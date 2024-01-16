@@ -56,7 +56,7 @@ function ChangePassword() {
           onSubmit={handleSubmit(onSubmit)}
         >
           <LoginFormInput
-            type={"text"}
+            type={"password"}
             register={register}
             validation={{
               required: "این فیلد الزامیست",
@@ -64,7 +64,7 @@ function ChangePassword() {
             error={errors.old_password}
             name={"old_password"}
             label={"گذرواژه قبلی"}
-            placeholder={"نام کاربری"}
+            placeholder={""}
           />
           <LoginFormInput
             type={"password"}

@@ -72,6 +72,7 @@ import ExpertAllRequests from "./pages/expert/all-requests/AllRequests";
 import ExpertSupport from "./pages/expert/new-tiket/ExpertSupport";
 import RegisterRoutes from "./auth/RegisterRoutes";
 import ChangePassword from "./pages/register/ChangePassword";
+import ForgetPassword from "./pages/register/ForgetPassword";
 
 const router = createBrowserRouter([
   // user routes
@@ -445,7 +446,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-
+  
   // auth routes
   {
     path: "/auth",
@@ -463,9 +464,13 @@ const router = createBrowserRouter([
         path: "verify",
         element: <PhoneVerify />,
       },
+      {
+        path: "forget-password",
+        element: <ForgetPassword />,
+      },
     ],
   },
-
+  
   {
     path: "*",
     element: <Navigate to={"/auth/login"} />,

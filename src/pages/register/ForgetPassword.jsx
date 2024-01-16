@@ -7,10 +7,10 @@ import { httpService } from "../../core/http-service";
 import { useDispatch } from "react-redux";
 import { userLoginSuccess } from "../../redux/register/loginAction";
 import Loader from "../../components/loader/Loader";
+import { toast } from "react-toastify";
 
-function Login() {
+function ForgetPassword() {
   // tools
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [reqError, setReqError] = useState(null);
@@ -26,33 +26,14 @@ function Login() {
   const formOnSubmit = async (data) => {
     setReqError(null);
     setIsLoading(true);
-    const reqPayload = {
-      username: data.username,
-      password: data.password,
-    };
     httpService
-      .post("/v1/login", reqPayload, {
+      .post("/v1/forget_pass", data, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        localStorage.setItem(
-          "token",
-          JSON.stringify(response.data.authorisation.token)
-        );
         setIsLoading(false);
-        dispatch(userLoginSuccess(response.data.user));
-        navigate(
-          `/${
-            response.data.user.type === "genuine" ||
-            response.data.user.type === "legal"
-              ? "user"
-              : response.data.user.type === "expert"
-              ? "expert"
-              : response.data.user.type === "admin"
-              ? "admin"
-              : ""
-          }/dashboard`
-        );
+        toast.success("گذرواژه جدید به شماره وارد شده ارسال میگردد");
+        navigate(`/auth/login`);
       })
       .catch((error) => {
         setReqError(error.response?.data.message || "خطا در برقراری ارتباط");
@@ -71,7 +52,9 @@ function Login() {
         {reqError ? (
           <p className=" text-red-500 my-6 text-center">{reqError}</p>
         ) : (
-          <h1 className=" font-bold my-6 text-center text-backColor">ورود</h1>
+          <h1 className=" font-bold my-6 text-center text-backColor">
+            فراموشی گذرواژه
+          </h1>
         )}
 
         {/* login form */}
@@ -85,38 +68,14 @@ function Login() {
             register={register}
             validation={{
               required: "این فیلد الزامیست",
+              minLength: 11,
+              maxLength: 11,
             }}
-            error={errors.username}
-            name={"username"}
-            label={"نام کاربری (کدملی یا شناسه ملی شرکت)"}
-            placeholder={"نام کاربری"}
+            error={errors.phone}
+            name={"phone"}
+            label={"شماره تلفن"}
+            placeholder={""}
           />
-          {/* password */}
-          <LoginFormInput
-            type={"password"}
-            register={register}
-            validation={{
-              required: "این فیلد الزامیست",
-              minLength: 6,
-            }}
-            error={errors.password}
-            name={"password"}
-            label={"گذرواژه (حداقل 8 کاراکتر)"}
-            placeholder={"******"}
-          />
-          <div className=" flex justify-between items-center">
-            <div className=" flex items-center gap-2 text-g-6">
-              <input
-                type="checkbox"
-                id="remember"
-                className="appearance-none w-5 h-5 border-2 border-s-400 rounded bg-[#E8F0F84D] mt-1 checked:bg-s-4 checked:border-none "
-              />
-              <label htmlFor="remember">به خاطر بسپار !</label>
-            </div>
-            <Link to={"/auth/forget-password"} className=" text-secondary">
-              فراموشی رمز عبور
-            </Link>
-          </div>
           <button
             disabled={isLoading}
             className={
@@ -139,4 +98,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ForgetPassword;
