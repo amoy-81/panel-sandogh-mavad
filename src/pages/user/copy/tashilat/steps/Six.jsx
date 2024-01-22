@@ -9,6 +9,10 @@ import { useNavigate } from "react-router-dom";
 import queryString from "query-string";
 import { Axios } from "../../../../../core/http-service";
 import useRequests from "../../../../../hooks/useRequests";
+import {
+  lengthFilesCheck,
+  sumfilesSize,
+} from "../../../../../helper/sumfilesSize";
 
 export default function Six() {
   const values = queryString.parse(location.search);
@@ -51,8 +55,8 @@ export default function Six() {
     invoices: null,
     bills: null,
   });
+  const { file1, file2, file3, facilities_id, ...arrayDocx } = document;
 
-  console.log(document);
   useEffect(() => {
     if (subResponse) {
       setIsLoading(false);
@@ -70,26 +74,40 @@ export default function Six() {
       if (typeof subError?.message === "string") {
         toast(subError?.message);
       }
-      console.log(subError)
-      if (subErrorResponse?.errors && typeof subErrorResponse?.errors === "object") {
+      if (
+        subErrorResponse?.errors &&
+        typeof subErrorResponse?.errors === "object"
+      ) {
         Object.keys(subErrorResponse.errors).map((item) => {
           toast(subErrorResponse.errors[item][0]);
         });
       }
     }
-  }, [subError , subErrorResponse]);
+  }, [subError, subErrorResponse]);
 
   useEffect(() => {
     setErrors(Validation(document, "upDoc"));
-    console.log(errors);
   }, [document]);
 
   const oploaddoc = () => {
     const showE = {};
+
+    // size limit check
+    if (
+      sumfilesSize(arrayDocx, { file1, file2, file3 }).unit === "مگابایت" &&
+      sumfilesSize(arrayDocx, { file1, file2, file3 }).size >= 12
+    ) {
+      return toast.error("مجموع سایز فایل ها باید کم تر از ۱۲ مگابایت باشد");
+    }
+
+    // length files check
+    if (!lengthFilesCheck(arrayDocx)) {
+      return toast.error("حداکثر تعداد فایل برای هر فیلد ۳ فایل می باشد");
+    }
+
     Object.keys(document).map((item) => {
       if (document[item] === null) {
         showE[item] = true;
-        console.log(showErr);
       }
     });
     setShowErr(showE);
@@ -131,7 +149,6 @@ export default function Six() {
       ...document,
       [e.target.name]: filesList,
     });
-    console.log(document);
     // setDocment({
     //   ...document , [e.target.name] : e.target.files[0]
     // });
@@ -154,7 +171,6 @@ export default function Six() {
         [e.name]: null,
       });
     }
-    console.log(document);
   };
 
   return (
@@ -178,6 +194,21 @@ export default function Six() {
           </div>
         )}
       </div>
+      <p className=" px-2 pb-4">
+        مجموع سایز فایل ها باید کم تر از ۱۲ مگابایت باشد{" "}
+        <span
+          className={
+            sumfilesSize(arrayDocx, { file1, file2, file3 }).unit ===
+              "مگابایت" &&
+            sumfilesSize(arrayDocx, { file1, file2, file3 }).size >= 12
+              ? " text-redColor"
+              : " text-green-600"
+          }
+        >
+          (سایز فعلی : {sumfilesSize(arrayDocx, { file1, file2, file3 }).size}{" "}
+          {sumfilesSize(arrayDocx, { file1, file2, file3 }).unit})
+        </span>
+      </p>
       <div className="flex">
         <UploadDocs_f
           document={document}
