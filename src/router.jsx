@@ -20,7 +20,6 @@ import UpdateGenuineProfile from "./pages/user/update-profile/UpdateGenuineProfi
 import LegalProfile from "./pages/user/update-profile/LegalProfile";
 import UpdateLegalProfile from "./pages/user/update-profile/UpdateLegalProfile";
 import ViewRequest from "./pages/user/requests/view-request/ViewRequest";
-import Support from "./pages/user/tiket/Support";
 import ExpertDashboard from "./pages/expert/dashboard/Dashboard";
 import ExpertCurrentRequests from "./pages/expert/current-requests/CurrentRequests";
 import CheckRequestLayout from "./pages/expert/check-request/layout/CheckRequestLayout";
@@ -70,7 +69,6 @@ import UpdateFacilitiesDocs from "./pages/user/copy/update-facilities-docs/Updat
 import RedirectRequest from "./pages/redirect-request/RedirectRequest";
 import ExpertAllRequests from "./pages/expert/all-requests/AllRequests";
 import ExpertSupport from "./pages/expert/new-tiket/ExpertSupport";
-import RegisterRoutes from "./auth/RegisterRoutes";
 import ChangePassword from "./pages/register/ChangePassword";
 import ForgetPassword from "./pages/register/ForgetPassword";
 

@@ -115,7 +115,7 @@ function WarrantyComplet() {
               ? "خطا در تکمیل اطلاعات"
               : subLoading
               ? "در حال ارسال..."
-              : "ورود"}
+              : "ثبت درخواست"}
           </button>
         </div>
       </div>

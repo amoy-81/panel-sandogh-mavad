@@ -4,12 +4,10 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import queryString from "query-string";
 import Loader from "../../../../../components/loader/Loader";
-import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { Vconfirm } from "../../../../../helper/validation/VS2shareholders";
 
 function FinishStep({ close, data, id, toast }) {
-  console.log(data);
   const navigate = useNavigate();
   const location = useLocation();
   const values = queryString.parse(location.search);
@@ -22,6 +20,7 @@ function FinishStep({ close, data, id, toast }) {
     signature: null,
   });
   const signatureRef = useRef(null);
+  const [signatureImage, setSignatureImage] = useState(data.signature);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,9 +41,9 @@ function FinishStep({ close, data, id, toast }) {
     });
   }, []);
 
-  const handleSave = () => {
+  const handleSave = (e) => {
+    e.preventDefault();
     const dataUrl = signatureRef.current.toDataURL();
-    console.log(dataUrl);
     const byteString = atob(dataUrl.split(",")[1]);
     const mimeString = dataUrl.split(",")[0].split(":")[1].split(";")[0];
     const ab = new ArrayBuffer(byteString.length);
@@ -52,8 +51,7 @@ function FinishStep({ close, data, id, toast }) {
     for (let i = 0; i < byteString.length; i++) {
       ia[i] = byteString.charCodeAt(i);
     }
-    const blob = new Blob([ab], { type: mimeString });
-    console.log(blob);
+    const blob = new Blob([ab], { type: "image/png" });
     setConfirm((prev) => {
       return {
         ...prev,
@@ -62,18 +60,19 @@ function FinishStep({ close, data, id, toast }) {
     });
   };
 
-  const clearHandler = () => {
+  const clearHandler = (e) => {
+    e.preventDefault();
+    setSignatureImage(null)
     setConfirm((prev) => ({ ...prev, signature: null }));
     signatureRef.current.clear();
   };
-  const changeHandler = (e) => {
+  const changeHandler = () => {
     setConfirm((prev) => {
       return {
         ...prev,
         [e.target.name]: e.target.value,
       };
     });
-    console.log(confirm);
   };
   const sendHandler = () => {
     setIsLoading(true);
@@ -98,14 +97,12 @@ function FinishStep({ close, data, id, toast }) {
           }),
         },
       })
-      .then(async (res) => {
-        console.log(res);
+      .then((res) => {
         setIsLoading(false);
         toast("تغییرات باموفقیت ثبت شد");
         close(null);
       })
       .catch((error) => {
-        console.log(error);
         setIsLoading(false);
         toast(
           "مشکلی در ارسال اطلاعات پیش آمده لطفا تمام فیلد هارا کامل نمایید"
@@ -161,22 +158,27 @@ function FinishStep({ close, data, id, toast }) {
           />
           <div className="flex flex-col items-center mt-2">
             <span className="font-semibold text-sm text-gray-600 ">امضا</span>
-            <div className="border mb-3">
-              <SignatureCanvas ref={signatureRef} />
-            </div>
+            {signatureImage !== null ? (
+              <img
+                src={`${import.meta.env.VITE_IMAGES_URL}/${signatureImage}`}
+                alt="امضا"
+              />
+            ) : (
+              <div className="border mb-3">
+                <SignatureCanvas ref={signatureRef} />
+              </div>
+            )}
             {confirm.signature !== null && (
               <p className="text-green-300">امضا ثبت شد</p>
             )}
             <div className="flex w-full justify-around">
               <button
-                type="button"
                 onClick={handleSave}
                 className="text-center p-2 bg-green-400 rounded text-white"
               >
                 ذخیره امضا
               </button>
               <button
-                type="button"
                 onClick={clearHandler}
                 className="text-center p-2 bg-yellow-300 rounded text-white"
               >
@@ -186,18 +188,19 @@ function FinishStep({ close, data, id, toast }) {
           </div>
           <div className=" flex gap-2 w-full">
             <button
-              type="button"
               className="rounded-2xl bg-blue-700 text-white p-2 text-center mt-8 shadow-lg  w-1/2 cursor-pointer  "
-              onClick={() =>
-                Object.keys(err).length === 0
-                  ? sendHandler()
-                  : toast("لطفا همه فیلد هارا با دقت کامل کنید")
-              }
+              onClick={(e) => {
+                e.preventDefault();
+                if (Object.keys(err).length === 0) {
+                  sendHandler();
+                } else {
+                  toast("لطفا همه فیلد هارا با دقت کامل کنید");
+                }
+              }}
             >
               ثبت اطلاعات
             </button>
             <button
-              type="button"
               className="rounded-2xl bg-red-700 text-white p-2 text-center mt-8 shadow-lg  w-1/2 cursor-pointer  "
               onClick={() => close(null)}
             >

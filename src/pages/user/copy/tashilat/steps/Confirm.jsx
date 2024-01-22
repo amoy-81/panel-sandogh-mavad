@@ -9,7 +9,6 @@ import Loader from "../../../../../components/loader/Loader";
 import { toast } from "react-toastify";
 import { Vconfirm } from "../../../../../helper/validation/VS2shareholders";
 import FinishModal from "../../../../../components/copy/modal/FinishModal";
-import { Axios } from "../../../../../core/http-service";
 
 export default function Confirm() {
   const navigate = useNavigate();
@@ -38,9 +37,9 @@ export default function Confirm() {
     });
   }, []);
 
-  const handleSave = () => {
+  const handleSave = (e) => {
+    e.preventDefault();
     const dataUrl = signatureRef.current.toDataURL();
-    console.log(dataUrl);
     const byteString = atob(dataUrl.split(",")[1]);
     const mimeString = dataUrl.split(",")[0].split(":")[1].split(";")[0];
     const ab = new ArrayBuffer(byteString.length);
@@ -48,8 +47,7 @@ export default function Confirm() {
     for (let i = 0; i < byteString.length; i++) {
       ia[i] = byteString.charCodeAt(i);
     }
-    const blob = new Blob([ab], { type: mimeString });
-    console.log(blob);
+    const blob = new Blob([ab], { type: "image/png" });
     setConfirm((prev) => {
       return {
         ...prev,

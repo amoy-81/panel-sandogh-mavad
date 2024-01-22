@@ -51,7 +51,7 @@ export default function ViewUsers() {
       type: isPerson ? "genuine" : "legal",
     };
     const queryString2 = queryString.stringify(params);
-    const url = `${import.meta.env.VITE_IMAGES_URL}/api/usersExcel?${queryString2}`;
+    const url = `${import.meta.env.VITE_IMAGES_URL}/api/usersExcel`;
     const link = document.createElement("a");
     link.href = url;
     link.download = "users.xlsx";

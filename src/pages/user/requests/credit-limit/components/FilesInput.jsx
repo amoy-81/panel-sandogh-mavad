@@ -56,7 +56,7 @@ function FilesInput({
       <div className=" w-full">
         {currentValue?.length > 0 &&
           currentValue.map(({ file }, index) => (
-            <div className=" flex items-center gap-2">
+            <div key={index} className=" flex items-center gap-2">
               <GoX
                 className=" hover:text-red-500 cursor-pointer"
                 onClick={() => removeHandler({ index: index, name: name })}

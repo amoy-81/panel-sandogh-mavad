@@ -145,7 +145,7 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
                                     </select>
                                 </td>
                                 <td className="p-4 text-xs text-gray-600 font-bold">
-                                    <div className="flex flex-col">
+                                    <div className="flex flex-col items-center">
                                     <input
                                         type="number"
                                         className={err[index] && err[index].n_certificate && showErr[index] && showErr[index].n_certificate ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
@@ -158,7 +158,7 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
                                     </div>
                                 </td>
                                 <td className="p-4 text-xs text-gray-600 font-bold">
-                                    <div className="flex flex-col">
+                                    <div className="flex flex-col items-center">
                                     <input
                                         type="number"
                                         className={err[index] && err[index].n_national && showErr[index] && showErr[index].n_national ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}

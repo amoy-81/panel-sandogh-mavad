@@ -9,6 +9,7 @@ function SingleFileInput({
   loading,
   error,
   prossesPercent,
+  cancelReq,
 }) {
   const removeHandler = (fildeName) => {
     setCurrentValue((prev) => ({ ...prev, [fildeName]: null }));
@@ -29,7 +30,7 @@ function SingleFileInput({
           <div className=" flex items-center gap-2">
             <GoX
               className=" hover:text-red-500 cursor-pointer"
-              onClick={() => removeHandler(name)}
+              onClick={() => (loading ? cancelReq() : removeHandler(name))}
             />
             <p className=" w-full break-normal">
               نام فایل :{currentValue.name.slice(0, 25)}...

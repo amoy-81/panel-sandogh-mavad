@@ -49,7 +49,7 @@ function EnumResource({ values, setValues }) {
         </div>
         {/* resident */}
         <div className=" w-1/2 flex items-center gap-4 max-lg:mt-4">
-          <p className=" font-bold">وضعیت تعهل :</p>
+          <p className=" font-bold">وضعیت تاهل :</p>
           <div className=" flex items-center gap-2">
             <input
               type="radio"

@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import SingleFileInput from "./components/SingleFileInput";
 import { titleChanger } from "../../../../helper/titleChanger";
 import { useNavigate } from "react-router-dom";
+import { lengthFilesCheck, sumfilesSize } from "../../../../helper/sumfilesSize";
 
 function CreditLimit() {
   const { userData } = useAuth();
@@ -80,6 +81,21 @@ function CreditLimit() {
   const onSubmit = () => {
     setErrorsState({});
     let errorCounter = 0;
+
+    // size limit check
+    if (
+      sumfilesSize(document, mainDocs).unit === "مگابایت" &&
+      sumfilesSize(document, mainDocs).size >= 12
+    ) {
+      return toast.error("مجموع سایز فایل ها باید کم تر از ۱۲ مگابایت باشد");
+    }
+
+    // length files check
+    if (!lengthFilesCheck(document)) {
+      return toast.error("حداکثر تعداد فایل برای هر فیلد ۳ فایل می باشد");
+    }
+    
+
     Object.keys(document).map((filed) => {
       if (document[filed] === null) {
         setErrorsState((prev) => ({ ...prev, [filed]: "این فیلد الزامیست" }));
@@ -103,6 +119,20 @@ function CreditLimit() {
     <div className="px-5">
       <div className=" py-6">
         <p className="text-xl font-extrabold">بارگیری و بارگذاری مدارک</p>
+        <p>
+          مجموع سایز فایل ها باید کم تر از ۱۲ مگابایت باشد{" "}
+          <span
+            className={
+              sumfilesSize(document, mainDocs).unit === "مگابایت" &&
+              sumfilesSize(document, mainDocs).size >= 12
+                ? " text-redColor"
+                : " text-green-600"
+            }
+          >
+            (سایز فعلی : {sumfilesSize(document, mainDocs).size}{" "}
+            {sumfilesSize(document, mainDocs).unit})
+          </span>
+        </p>
       </div>
       <div className=" w-full flex justify-around max-lg:flex-col max-lg:gap-4 p-4">
         <select
@@ -151,7 +181,11 @@ function CreditLimit() {
           <p className="text-xs py-3">
             فرمت های مجاز doc, docx, pdf, zip, png, jpg
           </p>
-          <a href={`${import.meta.env.VITE_IMAGES_URL}/storage/docs/1_6271033281.zip`}>
+          <a
+            href={`${
+              import.meta.env.VITE_IMAGES_URL
+            }/storage/docs/1_6271033281.zip`}
+          >
             <button className="w-full border rounded-lg border-p-7 text-p-7 p-2 hover:bg-p-7 hover:text-white transition font-bold text-sm">
               بارگیری فایل مدارک اصلی
             </button>
@@ -160,9 +194,10 @@ function CreditLimit() {
           <br />
           <hr className="border-dashed border-gray-300" />
 
-          {Object.keys(mainDocs).map((filde) => (
+          {Object.keys(mainDocs).map((filde, index) => (
             <div className=" flex mt-5 flex-col w-full gap-2">
               <SingleFileInput
+                key={index}
                 currentValue={mainDocs[filde]}
                 setCurrentValue={setMainDocs}
                 error={errorsState[filde]}
@@ -180,8 +215,9 @@ function CreditLimit() {
           </div>
           <hr className="border-dashed border-gray-300" />
           <div className=" flex mt-5 flex-col w-full gap-2">
-            {Object.keys(document).map((filde) => (
+            {Object.keys(document).map((filde, index) => (
               <FilesInput
+                key={index}
                 mainObject={document}
                 error={errorsState[filde]}
                 currentValue={document[filde]}

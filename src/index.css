@@ -85,6 +85,10 @@ table {
   border-color: inherit;
   border-collapse: collapse;
 }
+td {
+ text-align: center;
+ justify-content: center;
+}
 button,
 input,
 optgroup,

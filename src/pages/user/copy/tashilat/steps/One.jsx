@@ -173,7 +173,7 @@ export default function One() {
             </thead>
             <tbody>
               <tr className="bg-white border-b">
-                <td className="p-4 text-xs text-gray-600 font-bold">
+                <td className="p-4 flex justify-center text-xs text-gray-600 font-bold">
                   <input
                     type="text"
                     id="title"
@@ -256,7 +256,7 @@ export default function One() {
                   </select>
                 </td>
                 <td className="p-4 text-xs text-gray-600 font-bold">
-                  <div className="flex">
+                  <div className="flex justify-center">
                     <input
                       type="number"
                       className="border border-gray-300 rounded-xl w-20"
@@ -306,7 +306,7 @@ export default function One() {
                   </select>
                 </td>
                 <td className="p-4 text-xs text-gray-600 font-bold">
-                  <div className="flex">
+                  <div className="flex justify-center">
                     <input
                       type="number"
                       className="border border-gray-300 rounded-xl w-20"
@@ -354,7 +354,7 @@ export default function One() {
                   </select>
                 </td>
                 <td className="p-4 text-xs text-gray-600 font-bold">
-                  <div className="flex">
+                  <div className="flex justify-center">
                     <input
                       type="number"
                       className="border border-gray-300 rounded-xl w-20"
@@ -520,13 +520,12 @@ export default function One() {
                         id="year"
                         value={confirmationDate.year}
                         min="1300"
-                        max="1402"
                         placeholder="1400"
                       />
                     </div>
                     <div className="flex  items-center m-3 w-1/2">
                       <p className="font-bold text-sm">
-                        تاریخ انقضاء تأییدیه دانشبنیان:{" "}
+                        تاریخ انقضاء تأییدیه دانش بنیان:{" "}
                       </p>
 
                       <select
@@ -594,7 +593,6 @@ export default function One() {
                         onChange={dateChangeHandler}
                         id="year"
                         min="1300"
-                        max="1402"
                         placeholder="1400"
                       />
                     </div>

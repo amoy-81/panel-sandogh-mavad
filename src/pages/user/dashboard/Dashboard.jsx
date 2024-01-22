@@ -12,14 +12,14 @@ function Dashboard() {
       <h2 className="text-2xl font-bold">دسترسی سریع</h2>
       <div className="flex gap-6 text-white max-lg:flex-col">
         <div className="w-1/3 max-lg:w-full h-28 flex justify-between items-center rounded-2xl bg-secondary relative overflow-hidden pr-11">
-          <Link to="/user/warranty-docs-upload">ثبت درخواست ضانت نامه</Link>
+          <Link to="/user/warranty-docs-upload">ثبت درخواست ضمانت نامه</Link>
           <div>
             <img className="absolute left-1 inset-y-0" src={Ellipse6} alt="" />
             <img className="absolute left-0 inset-y-0" src={Ellipse5} alt="" />
           </div>
         </div>
         <div className="w-1/3 max-lg:w-full h-28 flex justify-between items-center rounded-2xl bg-secondary relative overflow-hidden pr-11">
-          <Link to="/user/facilities">ثبت درخواست تسهیلات</Link>
+          <Link to="/user/tashilat/1">ثبت درخواست تسهیلات</Link>
           <div>
             <img className="absolute left-0 inset-y-0" src={Ellipse2} alt="" />
             <img className="absolute left-0 inset-y-0" src={Ellipse1} alt="" />
