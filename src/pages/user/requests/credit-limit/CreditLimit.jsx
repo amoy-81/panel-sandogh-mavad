@@ -6,7 +6,11 @@ import { toast } from "react-toastify";
 import SingleFileInput from "./components/SingleFileInput";
 import { titleChanger } from "../../../../helper/titleChanger";
 import { useNavigate } from "react-router-dom";
-import { lengthFilesCheck, sumfilesSize } from "../../../../helper/sumfilesSize";
+import {
+  lengthFilesCheck,
+  oneFildeSizeCheck,
+  sumfilesSize,
+} from "../../../../helper/sumfilesSize";
 
 function CreditLimit() {
   const { userData } = useAuth();
@@ -45,6 +49,7 @@ function CreditLimit() {
     invoices: null,
   });
 
+  console.log(document);
   // api
   const {
     response: subResponse,
@@ -85,16 +90,19 @@ function CreditLimit() {
     // size limit check
     if (
       sumfilesSize(document, mainDocs).unit === "مگابایت" &&
-      sumfilesSize(document, mainDocs).size >= 12
+      sumfilesSize(document, mainDocs).size >= 250
     ) {
-      return toast.error("مجموع سایز فایل ها باید کم تر از ۱۲ مگابایت باشد");
+      return toast.error("مجموع سایز فایل ها باید کمتر از 250 مگابایت باشد");
     }
 
-    // length files check
-    if (!lengthFilesCheck(document)) {
-      return toast.error("حداکثر تعداد فایل برای هر فیلد ۳ فایل می باشد");
+    if (oneFildeSizeCheck(document,mainDocs )) {
+      return toast.error("حداکثر سایز برای هرفیلد ۱۵ مگابایت می باشد");
     }
-    
+
+    // // length files check
+    // if (!lengthFilesCheck(document)) {
+    //   return toast.error("حداکثر تعداد فایل برای هر فیلد ۳ فایل می باشد");
+    // }
 
     Object.keys(document).map((filed) => {
       if (document[filed] === null) {
@@ -120,11 +128,11 @@ function CreditLimit() {
       <div className=" py-6">
         <p className="text-xl font-extrabold">بارگیری و بارگذاری مدارک</p>
         <p>
-          مجموع سایز فایل ها باید کم تر از ۱۲ مگابایت باشد{" "}
+          سایز فایل های هر فیلد باید کمتر از ۱۵ مگابایت باشد{" "}
           <span
             className={
               sumfilesSize(document, mainDocs).unit === "مگابایت" &&
-              sumfilesSize(document, mainDocs).size >= 12
+              sumfilesSize(document, mainDocs).size >= 250
                 ? " text-redColor"
                 : " text-green-600"
             }
@@ -181,11 +189,7 @@ function CreditLimit() {
           <p className="text-xs py-3">
             فرمت های مجاز doc, docx, pdf, zip, png, jpg
           </p>
-          <a
-            href={`${
-              import.meta.env.VITE_IMAGES_URL
-            }/storage/docs/1_6271033281.zip`}
-          >
+          <a href={`${import.meta.env.VITE_IMAGES_URL}/warranty-docs.zip`}>
             <button className="w-full border rounded-lg border-p-7 text-p-7 p-2 hover:bg-p-7 hover:text-white transition font-bold text-sm">
               بارگیری فایل مدارک اصلی
             </button>

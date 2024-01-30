@@ -14,18 +14,16 @@ function FilesInput({
   const docChangeFile = (e) => {
     const filesEvent = e.target.files;
     const filesList = [];
-    for (let i = 0; i < filesEvent.length; i++) {
-      filesList.push({ file: filesEvent[i] });
-    }
+    filesList.push({ file: filesEvent[0] });
 
-    let arryasli = [];
-    if (mainObject[e.target.name] !== null) {
-      arryasli = mainObject[e.target.name];
-    }
-    const finalArry = filesList.concat(arryasli);
+    // let arryasli = [];
+    // if (mainObject[e.target.name] !== null) {
+    //   arryasli = mainObject[e.target.name];
+    // }
+    // const finalArry = filesList.concat(arryasli);
     setCurrentValue({
       ...mainObject,
-      [e.target.name]: finalArry,
+      [e.target.name]: filesList,
     });
   };
 
@@ -49,7 +47,13 @@ function FilesInput({
   };
 
   return (
-    <div className={error ? " w-full border border-red-600 p-2 rounded-xl text-g-5 " : " w-full border border-[#D2D1D4] p-2 rounded-xl text-g-5 "}>
+    <div
+      className={
+        error
+          ? " w-full border border-red-600 p-2 rounded-xl text-g-5 "
+          : " w-full border border-[#D2D1D4] p-2 rounded-xl text-g-5 "
+      }
+    >
       <div className=" w-full flex justify-between p-2">
         <p className=" text-xs text-backColor">{title}</p>
       </div>
@@ -61,9 +65,12 @@ function FilesInput({
                 className=" hover:text-red-500 cursor-pointer"
                 onClick={() => removeHandler({ index: index, name: name })}
               />
-              <p className=" w-full break-normal">
-                نام فایل :{file.name.slice(0, 25)}...
-              </p>
+              <div className=" flex w-full">
+                <p className=" w-full break-normal">
+                  نام فایل :{file.name.slice(0, 25)}...
+                </p>
+                <span className={(file.size / 1000000).toFixed(2) >= 15 ? "text-redColor w-24 " : " text-green-600 w-24 "}>{(file.size / 1000000).toFixed(2)} {"Mb"}</span>
+              </div>
             </div>
           ))}
       </div>
@@ -85,7 +92,6 @@ function FilesInput({
         id={name}
         name={name}
         onChange={docChangeFile}
-        multiple
       />
       {/* prosses bar */}
       <div className=" w-full flex justify-center gap-2 items-center">

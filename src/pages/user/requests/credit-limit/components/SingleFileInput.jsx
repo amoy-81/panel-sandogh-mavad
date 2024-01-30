@@ -32,9 +32,20 @@ function SingleFileInput({
               className=" hover:text-red-500 cursor-pointer"
               onClick={() => (loading ? cancelReq() : removeHandler(name))}
             />
-            <p className=" w-full break-normal">
-              نام فایل :{currentValue.name.slice(0, 25)}...
-            </p>
+            <div className=" flex w-full">
+              <p className=" w-full break-normal">
+                نام فایل :{currentValue.name.slice(0, 25)}...
+              </p>
+              <span
+                className={
+                  (currentValue.size / 1000000).toFixed(2) >= 15
+                    ? "text-redColor w-24 "
+                    : " text-green-600 w-24 "
+                }
+              >
+                {(currentValue.size / 1000000).toFixed(2)} {"Mb"}
+              </span>
+            </div>
           </div>
         )}
       </div>
