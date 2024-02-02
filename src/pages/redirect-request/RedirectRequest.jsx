@@ -50,7 +50,13 @@ function RedirectRequest() {
 
   useEffect(() => {
     if (statusError) {
-      navigate("/auth/login");
+      navigate(
+        `/${
+          userData.type === "genuine" || userData.type === "legal"
+            ? `user`
+            : userData.type
+        }/does-not-exist`
+      );
     }
   }, [statusError]);
 

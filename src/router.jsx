@@ -71,6 +71,8 @@ import ExpertAllRequests from "./pages/expert/all-requests/AllRequests";
 import ExpertSupport from "./pages/expert/new-tiket/ExpertSupport";
 import ChangePassword from "./pages/register/ChangePassword";
 import ForgetPassword from "./pages/register/ForgetPassword";
+import DoesNotExist from "./pages/error/DoesNotExist";
+import UpdateBondDocs from "./pages/user/requests/update-bond-docs/ViewBondRequest";
 
 const router = createBrowserRouter([
   // user routes
@@ -197,10 +199,18 @@ const router = createBrowserRouter([
       },
 
       {
+        path: "update-bond-docs/:id",
+        element: <UpdateBondDocs />,
+      },
+
+      {
         path: "update-facilities-docs/:id",
         element: <UpdateFacilitiesDocs />,
       },
-
+      {
+        path: "does-not-exist",
+        element: <DoesNotExist />,
+      },
       {
         path: "tashilat",
         element: <Tashilat />,
@@ -288,7 +298,10 @@ const router = createBrowserRouter([
         path: "edit-profile",
         element: <ExpertEditProfile />,
       },
-
+      {
+        path: "does-not-exist",
+        element: <DoesNotExist />,
+      },
       // check request
       {
         path: "check-request",
@@ -442,9 +455,12 @@ const router = createBrowserRouter([
         path: "notifications",
         element: <Notifications />,
       },
+      {
+        path: "does-not-exist",
+        element: <DoesNotExist />,
+      },
     ],
   },
-  
   // auth routes
   {
     path: "/auth",
@@ -468,7 +484,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  
+  // error routes
   {
     path: "*",
     element: <Navigate to={"/auth/login"} />,

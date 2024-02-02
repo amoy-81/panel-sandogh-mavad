@@ -49,8 +49,8 @@ function ExpertAllRequests() {
                       {item.request.type === "facilities"
                         ? "درخواست تسهیلات"
                         : item.request.type === "warranty"
-                        ? "درخواست حد اعتباری"
-                        : "درخواست ضمانت"}
+                        ? "درخواست ضمانت"
+                        : "درخواست حد اعتباری"}
                     </p>
                     {item.request.facilities?.length > 0 && (
                       <p className="font-bold text-sm pt-2 ">{`عنوان : ${item.request.facilities[0].title}`}</p>

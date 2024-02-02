@@ -128,7 +128,7 @@ function CreditLimit() {
       <div className=" py-6">
         <p className="text-xl font-extrabold">بارگیری و بارگذاری مدارک</p>
         <p>
-          سایز فایل های هر فیلد باید کمتر از ۱۵ مگابایت باشد{" "}
+          مجموع سایز فایل های انتخاب شده باید کم تر از ۲۵۰ مگابایت باشد. {" "}
           <span
             className={
               sumfilesSize(document, mainDocs).unit === "مگابایت" &&

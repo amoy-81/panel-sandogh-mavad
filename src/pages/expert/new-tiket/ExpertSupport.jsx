@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useRequests from "../../../hooks/useRequests";
 import Message from "../../user/tiket/components/Message";
 import SupportMessage from "../../user/tiket/components/SupportMessage";
@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 function ExpertSupport() {
   const { userData } = useAuth();
   const { tiketId } = useParams();
+  const navigate = useNavigate()
 
   const {
     response: tiketResponse,
@@ -45,8 +46,9 @@ function ExpertSupport() {
   return (
     <div className=" relative h-full flex flex-col justify-between p-4">
       {(tiketLoading || generateMessageLoading) && <Loader />}
-      <div className=" flex justify-between bg-white rounded-t-2xl font-bold p-6 shadow-xl z-30 ">
+      <div className=" flex justify-between items-center bg-white rounded-t-2xl font-bold p-4 shadow-xl z-30 ">
         پشتیبانی - تیکت شماره {`${tiketId}`}
+        <button onClick={() => navigate(-1)} className=" p-2 rounded-md bg-secondary text-white font-semibold text-sm">بازگشت</button>
       </div>
       {/* messages */}
       <div className=" sc h-[55vh] bg-white flex flex-col-reverse rounded-b-2xl overflow-auto p-4 max-lg:px-0">

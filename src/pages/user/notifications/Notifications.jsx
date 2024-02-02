@@ -105,12 +105,12 @@ function Notifications() {
                       {notif.data.message}
                     </td>
                     <td className="p-4  text-xs text-gray-400 font-bold">
-                      <Link
+                      {notif.data.request_id > 0 && <Link
                         to={`/redirect-request/${notif.data.request_id}`}
                         className=" text-white bg-secondary rounded p-2"
                       >
                         مشاهده
-                      </Link>
+                      </Link>}
                     </td>
                     <td className="p-4 text-xs text-gray-400 font-bold">
                       {onlyDateConversion(notif.created_at)}
