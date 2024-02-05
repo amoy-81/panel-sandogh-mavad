@@ -90,6 +90,7 @@ function FilesInput({
         className=" hidden"
         type="file"
         id={name}
+        accept=".zip, .pdf, .jpg"
         name={name}
         onChange={docChangeFile}
       />

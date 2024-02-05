@@ -66,6 +66,7 @@ function SingleFileInput({
         type="file"
         id={name}
         name={name}
+        accept=".zip, .pdf, .jpg"
         onChange={(e) =>
           setCurrentValue((prev) => ({ ...prev, [name]: e.target.files[0] }))
         }
